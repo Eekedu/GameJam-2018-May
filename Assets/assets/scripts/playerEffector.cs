@@ -6,10 +6,11 @@ public class playerEffector : MonoBehaviour {
     TokenScript.TokenType status = TokenScript.TokenType.TokenNone;
     public GameObject attackPrefab;
     public GameObject firePrefab, airPrefab, WaterPrefab, EarthPrefab, ElePrefab;
-
+    movement mmove;
     private void Start()
     {
-        this.SendMessage("setAnim", status);
+        mmove = GetComponent<movement>();
+        mmove.setAnim(status);
     }
 
 
@@ -18,7 +19,7 @@ public class playerEffector : MonoBehaviour {
         if (m_lastToken == null) return;
         status = m_lastToken.GetTokenType() ;
         FindObjectOfType<RoundManager>().GrabToken(m_lastToken);
-        this.SendMessage("setAnim", status);
+        mmove.setAnim(status);
         attackPrefab = GameObject.FindGameObjectWithTag(status.ToString());
 
     }
