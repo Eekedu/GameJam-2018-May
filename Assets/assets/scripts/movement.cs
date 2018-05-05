@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class movement : MonoBehaviour {
     public float speed = 500f;
-    float timeLast;
+    private float timeLast;
     public float jumpingForce = 100f;
-    bool canJump = true;
+    private bool canJump = true;
     private Vector2 velocity;
-    Rigidbody2D body;
+    private Rigidbody2D body;
 
     private void Start()
     {
-        body = GetComponent<Rigidbody2D>();
+        body = this.GetComponent<Rigidbody2D>();
     }
 
     void move(Vector2 dir)
