@@ -19,7 +19,6 @@ public class TokenScript : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("haw");
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

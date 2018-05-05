@@ -23,6 +23,19 @@ public class playerController : MonoBehaviour {
             SendMessage("move", new Vector2(moveX, 0f), SendMessageOptions.RequireReceiver);
         }
 
+        if (Input.GetKey(KeyCode.A))
+        {
+            this.gameObject.SendMessage("move", new Vector2(-1.0f, 0f));
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            this.gameObject.SendMessage("move", new Vector2(1.0f, 0f));
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            this.gameObject.SendMessage("pickup",1);
+        }
+
         if (Input.GetButtonDown(playerPrefix + "Fire1"))
         {
             Debug.Log(playerPrefix + "Fire1");
