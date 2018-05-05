@@ -9,6 +9,14 @@ public class RoundManager : MonoBehaviour {
     TokenSpawn[] m_TokenSpawns;
     public GameObject playerPrefab;
     public GameObject tokenPrefab;
+    public TokenScript preEarthToken;
+    public TokenScript preWindToken;
+    public TokenScript preFireToken;
+    public TokenScript preWaterToken;
+    public TokenScript preElectroToken;
+
+
+    PlayerHUDScript testHUD;
 
 
     private class TokenSpawn
@@ -34,11 +42,12 @@ public class RoundManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         m_tOverlayText = GetComponentInChildren<Text>();
-        SceneBoss.g_oSceneBoss.FadeIn();
+        if (SceneBoss.g_oSceneBoss!=null) SceneBoss.g_oSceneBoss.FadeIn();
         spawntimetest = Time.fixedTime + 1.0f;
         ConvertPlayerSpawns();
         ConvertTokenSpawns();
         EnterPhaseStart();
+        testHUD = GetComponentInChildren<PlayerHUDScript>();
     }
 
     
@@ -100,19 +109,31 @@ public class RoundManager : MonoBehaviour {
             m_TokenSpawns[ddex] = new TokenSpawn();
             m_TokenSpawns[ddex].m_vPosition = new Vector2(tkspot.transform.position.x, tkspot.transform.position.y);
             m_TokenSpawns[ddex].m_tType = tkspot.GetTokenType();
+            Debug.Log("Consumed " + tkspot.GetTokenType().ToString());
             m_TokenSpawns[ddex].m_bSpawning = true;
             m_TokenSpawns[ddex].m_fSpawnTime = Time.fixedTime + 2.0f;
             Destroy(tkspot.gameObject);
+            ddex++;
         }
+        Debug.Log("Created " + ddex.ToString() + " token spawns.");
     }
 
     private void SpawnPlayer(int playerdex)
     {
         Instantiate(playerPrefab, new Vector3(m_v2PlayerSpawns[0].x, m_v2PlayerSpawns[0].y), Quaternion.identity);
+        testHUD.SetHealth(100, false);
+    }
+
+    private float fHealth = 100f;
+    private void DamagePlayer(int playerdex, float fDamage)
+    {
+        fHealth -= fDamage;
+        testHUD.SetHealth(fHealth, true);
     }
 
     private void SpawnTokens()
     {
+
         foreach (TokenSpawn tspawn in m_TokenSpawns)
         {
             if (tspawn.m_bSpawning)
@@ -127,7 +148,19 @@ public class RoundManager : MonoBehaviour {
 
     private void SpawnToken(TokenSpawn ttspawn)
     {
-        TokenScript tscrip = Instantiate(tokenPrefab, new Vector3(ttspawn.m_vPosition.x, ttspawn.m_vPosition.y), Quaternion.identity).GetComponent<TokenScript>();
+        TokenScript targetToken=null;
+        switch (ttspawn.m_tType)
+        {
+            case TokenScript.TokenType.TokenEarth: targetToken = preEarthToken; break;
+            case TokenScript.TokenType.TokenWind: targetToken = preWindToken; break;
+            case TokenScript.TokenType.TokenWater: targetToken = preWaterToken; break;
+            case TokenScript.TokenType.TokenFire: targetToken = preFireToken; break;
+            case TokenScript.TokenType.TokenElectric: targetToken = preElectroToken; break;
+
+        }
+        if (targetToken == null) return;
+
+        TokenScript tscrip = Instantiate(targetToken, new Vector3(ttspawn.m_vPosition.x, ttspawn.m_vPosition.y), Quaternion.identity).GetComponent<TokenScript>();
         ttspawn.m_oObject = tscrip;
         tscrip.SetTokenType(ttspawn.m_tType);
         ttspawn.m_bSpawning = false;
@@ -146,6 +179,10 @@ public class RoundManager : MonoBehaviour {
                 ProcPhasePlay();
                 break;
         }
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            DamagePlayer(1, 15);
+        }
         //SpawnTokens();
     }
     public void GrabToken(TokenScript ttg)
@@ -154,9 +191,11 @@ public class RoundManager : MonoBehaviour {
         {
             if (tspawn.m_oObject==ttg)
             {
+                testHUD.SetToken(tspawn.m_tType);
                 tspawn.m_bSpawning = true;
                 tspawn.m_fSpawnTime = Time.fixedTime + 5.0f;
                 Destroy(ttg.gameObject);
+
             }
         }
     }

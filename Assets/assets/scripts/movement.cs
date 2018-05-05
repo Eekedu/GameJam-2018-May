@@ -75,6 +75,10 @@ public class movement : MonoBehaviour {
         }
         selfAni.SetBool("isFalling", body.velocity.y < -0.0001f);
         selfAni.SetBool("isJumping", (velocity.y > 0.1f));
+<<<<<<< HEAD
+=======
+        //Debug.Log(body.velocity.y);
+>>>>>>> dd32010c4b4d99481833bfb598498b817f3f7928
         body.AddForce(velocity);
         transform.position = new Vector2(transform.position.x + velocity.x, transform.position.y);
     }
