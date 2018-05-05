@@ -30,7 +30,7 @@ public class playerController : MonoBehaviour {
             mmove.stop();
         }
     }
-
+     
     // Update is called once per frame
     void Update () {
 
