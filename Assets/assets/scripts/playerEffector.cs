@@ -7,7 +7,9 @@ public class playerEffector : MonoBehaviour {
 
     void pickup(int type)
     {
-        status = type;
+        if (m_lastToken == null) return;
+        status = m_lastToken.GetTokenType() ;
+        Debug.Log(status);
         changeSprite();
     }
 
@@ -16,6 +18,16 @@ public class playerEffector : MonoBehaviour {
 
     }
 
+    TokenScript m_lastToken;
+    public void SetNearToken(TokenScript nuToken)
+    {
+        m_lastToken = nuToken;
+    }
+
+    public void ClearNearToken(TokenScript removeToken)
+    {
+        m_lastToken = null;
+    }
     void attack(Vector2 dir)
     {
         switch (status)
