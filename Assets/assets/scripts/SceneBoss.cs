@@ -6,7 +6,7 @@ public class SceneBoss : MonoBehaviour
 {
     public static SceneBoss g_oSceneBoss;
     private RawImage m_oFadeUIImage;
-    public float m_fFadeSpeed = 0.8f;
+    public float m_fFadeSpeed = 1.8f;
     public enum FadeDirection
     {
         FD_In, //Alpha = 1
@@ -47,8 +47,16 @@ public class SceneBoss : MonoBehaviour
         return -1;
     }
 
+    public bool FadeComplete()
+    {
+        return !m_bFading;
+    }
+
+    private bool m_bFading;
     private IEnumerator Fade(FadeDirection fadeDirection)
     {
+        m_bFading = true;
+
         float alpha = (fadeDirection == FadeDirection.FD_In) ? 1 : 0;
         float fadeEndValue = (fadeDirection == FadeDirection.FD_In) ? 0 : 1;
         if (fadeDirection == FadeDirection.FD_In)
@@ -58,6 +66,7 @@ public class SceneBoss : MonoBehaviour
                 SetColorImage(ref alpha, fadeDirection);
                 yield return null;
             }
+            m_bFading = false;
             m_oFadeUIImage.enabled = false;
         }
         else
@@ -68,6 +77,7 @@ public class SceneBoss : MonoBehaviour
                 SetColorImage(ref alpha, fadeDirection);
                 yield return null;
             }
+            m_bFading = false;
         }
     }
     private void SetColorImage(ref float alpha, FadeDirection fadeDirection)
