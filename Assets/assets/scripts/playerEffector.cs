@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class playerEffector : MonoBehaviour {
-    TokenScript.TokenType status = TokenScript.TokenType.TokenWind;
+    TokenScript.TokenType status = TokenScript.TokenType.TokenNone;
     public GameObject firePrefab, airPrefab, WaterPrefab, EarthPrefab, ElePrefab;
     movement mmove;
     private void Start()

@@ -153,7 +153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8adba5938290f614f9b828d74bf714a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackPrefab: {fileID: 0}
   firePrefab: {fileID: 1729318556973882, guid: 21f7b7a032ec1d845a423f896812f2f7, type: 2}
   airPrefab: {fileID: 0}
   WaterPrefab: {fileID: 0}
@@ -199,7 +198,7 @@ MonoBehaviour:
   jumpingForce: 10
   airC: {fileID: 9100000, guid: fde16c0896e4a4b4ab8c3f9e76827cbf, type: 2}
   fireC: {fileID: 9100000, guid: 8e0e5967435dd084dabcb3cf7c992ba9, type: 2}
-  elecC: {fileID: 0}
+  elecC: {fileID: 9100000, guid: 13729e6c9d93db44aa2ed5d5a8506329, type: 2}
   earthC: {fileID: 0}
   waterC: {fileID: 0}
 --- !u!212 &212763135605940114
