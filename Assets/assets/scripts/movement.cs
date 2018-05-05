@@ -53,6 +53,9 @@ public class movement : MonoBehaviour {
         {
             timeLast = 0;
             velocity.y = 0;
+        } else
+        {
+            velocity.y *= 0.95f;
         }
         body.AddForce(velocity);
         transform.position = new Vector2(transform.position.x + velocity.x, transform.position.y);
