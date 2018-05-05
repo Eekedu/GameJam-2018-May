@@ -218,7 +218,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick button 0
+    positiveButton: joystick button 1
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -229,6 +229,22 @@ InputManager:
     type: 0
     axis: 0
     joyNum: 2
+  - serializedVersion: 3
+    m_Name: P1_Fire1
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick button 0
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 1
   - serializedVersion: 3
     m_Name: P1_Fire2
     descriptiveName: 
@@ -250,7 +266,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick button 1
+    positiveButton: joystick button 2
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -294,6 +310,22 @@ InputManager:
     axis: 0
     joyNum: 2
   - serializedVersion: 3
+    m_Name: P1_Jump
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick button 3
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 13
+  - serializedVersion: 3
     m_Name: P2_Jump
     descriptiveName: 
     descriptiveNegativeName: 
@@ -308,7 +340,7 @@ InputManager:
     invert: 0
     type: 0
     axis: 0
-    joyNum: 2
+    joyNum: 13
   - serializedVersion: 3
     m_Name: Submit
     descriptiveName: 
