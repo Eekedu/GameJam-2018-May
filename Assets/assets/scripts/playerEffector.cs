@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class playerEffector : MonoBehaviour {
-    TokenScript.TokenType status = TokenScript.TokenType.TokenNone;
+    TokenScript.TokenType status = TokenScript.TokenType.TokenFire;
     public GameObject attackPrefab;
 
     private void Start()
     {
         attackPrefab = GameObject.FindGameObjectWithTag("TokenFire");
-        this.SendMessage("setAnim", status);
     }
 
     void pickup(int type)
@@ -18,7 +17,12 @@ public class playerEffector : MonoBehaviour {
         status = m_lastToken.GetTokenType() ;
         FindObjectOfType<RoundManager>().GrabToken(m_lastToken);
         attackPrefab = GameObject.FindGameObjectWithTag(status.ToString());
-        this.SendMessage("setAnim", status);
+        changeSprite();
+    }
+
+    void changeSprite()
+    {
+
     }
 
     TokenScript m_lastToken;

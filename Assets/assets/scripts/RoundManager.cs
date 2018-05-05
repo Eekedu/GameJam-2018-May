@@ -18,8 +18,6 @@ public class RoundManager : MonoBehaviour {
 
     private int m_iPlayerCount;
     private PlayerHUDScript[] m_aoPlayerHUDs;
-    private CameraScript m_oGameCamera;
-    private ActivePlayer[] m_oActivePlayers;
 
 
 
@@ -30,23 +28,6 @@ public class RoundManager : MonoBehaviour {
         public TokenScript m_oObject;
         public bool m_bSpawning;
         public float m_fSpawnTime;
-    }
-
-    private class ActivePlayer
-    {
-        public GameObject m_oObject;
-        public playerEffector m_oEffector;
-        public playerController m_oController;
-        public ActivePlayer(GameObject playob)
-        {
-            m_oObject = playob;
-            m_oController = playob.GetComponent<playerController>();
-            m_oEffector = playob.GetComponent<playerEffector>();
-        }
-        public Vector2 GetPosition()
-        {
-            return new Vector2(m_oObject.transform.position.x, m_oObject.transform.position.y);
-        }
     }
 
     private enum Phase
@@ -68,8 +49,7 @@ public class RoundManager : MonoBehaviour {
         ConvertPlayerSpawns();
         ConvertTokenSpawns();
         EnterPhaseStart();
-        SetPlayerCount(2);
-        m_oGameCamera = GetComponentInChildren<CameraScript>();
+        SetPlayerCount(4);
         
 
 
@@ -90,7 +70,6 @@ public class RoundManager : MonoBehaviour {
             m_aoPlayerHUDs[i] = Instantiate(m_preHUD, this.transform);
             m_aoPlayerHUDs[i].transform.localPosition = new Vector3(fXPos, fYStart);
         }
-        m_oActivePlayers = new ActivePlayer[count];
     }
 
     private void EnterPhaseStart()
@@ -161,7 +140,7 @@ public class RoundManager : MonoBehaviour {
 
     private void SpawnPlayer(int playerdex)
     {
-        m_oActivePlayers[0] = new ActivePlayer(Instantiate(playerPrefab, new Vector3(m_v2PlayerSpawns[0].x, m_v2PlayerSpawns[0].y), Quaternion.identity));
+        Instantiate(playerPrefab, new Vector3(m_v2PlayerSpawns[0].x, m_v2PlayerSpawns[0].y), Quaternion.identity);
         m_aoPlayerHUDs[0].SetHealth(100, false);
     }
 
@@ -207,15 +186,6 @@ public class RoundManager : MonoBehaviour {
         ttspawn.m_bSpawning = false;
     }
 
-    private Vector2 m_vTopLeftBound, m_vBottomRightBound;
-    private void UpdatePlayerBounds()
-    {
-        m_vTopLeftBound = new Vector2(Mathf.Min(m_oActivePlayers[0].GetPosition().x, 0), Mathf.Max(m_oActivePlayers[0].GetPosition().y, 0));
-        m_vBottomRightBound.x = Mathf.Max(m_oActivePlayers[0].GetPosition().x, 0);
-        m_vBottomRightBound.y = Mathf.Min(m_oActivePlayers[0].GetPosition().y, 0);
-        Debug.Log(m_vTopLeftBound.ToString() + " to " + m_vBottomRightBound.ToString());
-    }
-
     bool spawntest = true;
     float spawntimetest;
 	// Update is called once per frame
@@ -233,8 +203,6 @@ public class RoundManager : MonoBehaviour {
         {
             DamagePlayer(1, 15);
         }
-        UpdatePlayerBounds();
-        m_oGameCamera.SetBounds(m_vTopLeftBound, m_vBottomRightBound);
         //SpawnTokens();
     }
     public void GrabToken(TokenScript ttg)
