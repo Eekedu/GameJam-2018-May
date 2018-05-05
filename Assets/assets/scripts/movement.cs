@@ -89,6 +89,9 @@ public class movement : MonoBehaviour {
 
     private void GroundCheck()
     {
+        Vector2 vStart = new Vector2(transform.position.x, transform.position.y);
+        Vector2 vEnd = vStart - (Vector2.up * 1.0f);
+        //aDebug.DrawLine(new Vector3(vStart.x, vStart.y), new Vector3(vEnd.x, vEnd.y));
         bool grounded =  Physics2D.Linecast(transform.position, new Vector2(transform.position.x,transform.position.y) - (Vector2.up*1.0f),1<<LayerMask.NameToLayer("Ground"));
         canJump = (body.velocity.y <= 0f) && (grounded) && (!isJumping);
     }
