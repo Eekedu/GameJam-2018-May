@@ -14,7 +14,7 @@ public class movement : MonoBehaviour {
     private SpriteRenderer selfSpri;
     private Rigidbody2D body;
     private Animator selfAni;
- 
+
     private void Start()
     {
         body = this.GetComponent<Rigidbody2D>();
@@ -32,7 +32,7 @@ public class movement : MonoBehaviour {
             this.isRunning = true;
     }
 
-    void setAnim(TokenScript.TokenType type)
+    public void setAnim(TokenScript.TokenType type)
     {
         RuntimeAnimatorController change = null;
         switch (type)
@@ -47,7 +47,7 @@ public class movement : MonoBehaviour {
         //AnimatorOverrideController overide = new AnimatorOverrideController((RuntimeAnimatorController)Resources.Load("assets/anims/playerAir"));
         if (change != null)
         {
-            selfAni.runtimeAnimatorController = fireC as RuntimeAnimatorController;
+            selfAni.runtimeAnimatorController = change as RuntimeAnimatorController;
         }
     }
 

@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPrefab: {fileID: 0}
-  firePrefab: {fileID: 0}
+  firePrefab: {fileID: 1729318556973882, guid: 21f7b7a032ec1d845a423f896812f2f7, type: 2}
   airPrefab: {fileID: 0}
   WaterPrefab: {fileID: 0}
   EarthPrefab: {fileID: 0}
@@ -197,8 +197,8 @@ MonoBehaviour:
   speed: 0.1
   hMoveForce: 5
   jumpingForce: 10
-  airC: {fileID: 0}
-  fireC: {fileID: 0}
+  airC: {fileID: 9100000, guid: fde16c0896e4a4b4ab8c3f9e76827cbf, type: 2}
+  fireC: {fileID: 9100000, guid: 8e0e5967435dd084dabcb3cf7c992ba9, type: 2}
   elecC: {fileID: 0}
   earthC: {fileID: 0}
   waterC: {fileID: 0}
