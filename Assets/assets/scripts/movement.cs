@@ -47,7 +47,7 @@ public class movement : MonoBehaviour {
         //AnimatorOverrideController overide = new AnimatorOverrideController((RuntimeAnimatorController)Resources.Load("assets/anims/playerAir"));
         if (change != null)
         {
-            selfAni.runtimeAnimatorController = fireC as RuntimeAnimatorController;
+            selfAni.runtimeAnimatorController = change as RuntimeAnimatorController;
         }
     }
 
@@ -82,7 +82,6 @@ public class movement : MonoBehaviour {
         selfAni.SetBool("isFalling", body.velocity.y < -0.0001f);
         selfAni.SetBool("isJumping", (body.velocity.y > 0.1f));
         //body.AddForce(velocity);
-        Debug.Log(body.velocity.ToString());
         //transform.position = new Vector2(transform.position.x + velocity.x, transform.position.y);
     }
 }

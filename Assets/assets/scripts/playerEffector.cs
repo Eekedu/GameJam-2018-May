@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class playerEffector : MonoBehaviour {
-    TokenScript.TokenType status = TokenScript.TokenType.TokenNone;
-    public GameObject attackPrefab;
+    TokenScript.TokenType status = TokenScript.TokenType.TokenWind;
     public GameObject firePrefab, airPrefab, WaterPrefab, EarthPrefab, ElePrefab;
     movement mmove;
     private void Start()
     {
-        mmove = GetComponent<movement>();
+        mmove = this.GetComponent<movement>();
         mmove.setAnim(status);
     }
 
@@ -20,7 +19,6 @@ public class playerEffector : MonoBehaviour {
         status = m_lastToken.GetTokenType() ;
         FindObjectOfType<RoundManager>().GrabToken(m_lastToken);
         mmove.setAnim(status);
-        attackPrefab = GameObject.FindGameObjectWithTag(status.ToString());
 
     }
 
