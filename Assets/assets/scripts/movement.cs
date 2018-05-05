@@ -32,6 +32,12 @@ public class movement : MonoBehaviour {
         }
     }
 
+    void setAnim(string type)
+    {
+        AnimatorOverrideController overide = new AnimatorOverrideController((RuntimeAnimatorController)Resources.Load("assets/anims/playerAir"));
+        selfAni.runtimeAnimatorController = overide;
+    }
+
     void stop()
     {
         velocity.x = 0;
