@@ -46,7 +46,7 @@ public class RoundManager : MonoBehaviour {
     private void EnterPhaseStart()
     {
         m_pPhase = Phase.RP_Starting;
-        m_fStartTime = Time.fixedTime + 5.1f;
+        m_fStartTime = Time.fixedTime + 3.1f;
     }
     private void ProcPhaseStart()
     {
@@ -67,10 +67,15 @@ public class RoundManager : MonoBehaviour {
         m_pPhase = Phase.RP_Playing;
         m_tOverlayText.text = "Fight!";
         SpawnPlayer(1);
+        m_fStartTime = Time.fixedTime + 1.0f;
     }
     private void ProcPhasePlay()
     {
         SpawnTokens();
+        if (m_fStartTime >= Time.fixedTime)
+        {
+            m_tOverlayText.enabled = false;
+        }
     }
 
     private void ConvertPlayerSpawns()
