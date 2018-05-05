@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class playerEffector : MonoBehaviour {
     TokenScript.TokenType status = TokenScript.TokenType.TokenNone;
+    public GameObject attackPrefab;
     public GameObject firePrefab, airPrefab, WaterPrefab, EarthPrefab, ElePrefab;
 
     private void Start()
@@ -11,12 +12,15 @@ public class playerEffector : MonoBehaviour {
         this.SendMessage("setAnim", status);
     }
 
+
     void pickup(int type)
     {
         if (m_lastToken == null) return;
         status = m_lastToken.GetTokenType() ;
         FindObjectOfType<RoundManager>().GrabToken(m_lastToken);
         this.SendMessage("setAnim", status);
+        attackPrefab = GameObject.FindGameObjectWithTag(status.ToString());
+
     }
 
     TokenScript m_lastToken;
