@@ -5,8 +5,10 @@ using UnityEngine;
 public class playerController : MonoBehaviour {
     public string playerPrefix;
     GameObject pickup;
+    movement mmove;
 	// Use this for initialization
 	void Start () {
+        mmove = GetComponent<movement>();
 	}
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -14,24 +16,39 @@ public class playerController : MonoBehaviour {
         pickup = collision.gameObject;
     }
 
+    public void AssignPlayerNumber(int dex)
+    {
+        playerPrefix = "P" + dex.ToString() + "_";
+    }
+
+    private void FixedUpdate()
+    {
+        float moveX = (Input.GetAxis(playerPrefix + "Horizontal"));
+        Debug.Log(playerPrefix + "Horizontal is " + moveX.ToString() );
+        moveX = Mathf.Clamp(moveX, -1.0f, 1.0f);
+        //SendMessage("move", new Vector2(moveX, 0f), SendMessageOptions.RequireReceiver);
+        mmove.move(new Vector2(moveX, 0.0f));
+        if (Mathf.Abs(moveX) >= 0.01f)
+        {
+            //            SendMessage("move", new Vector2(moveX, 0f), SendMessageOptions.RequireReceiver);
+        }
+        else
+        {
+            mmove.stop();
+        }
+    }
+
     // Update is called once per frame
     void Update () {
-        float moveX = (Input.GetAxis(playerPrefix + "Horizontal"));
-        if (moveX != 0)
-        {
-            SendMessage("move", new Vector2(moveX, 0f), SendMessageOptions.RequireReceiver);
-        } else
-        {
-            SendMessage("stop", null);
-        }
+
 
         if (Input.GetKey(KeyCode.A))
         {
-            this.gameObject.SendMessage("move", new Vector2(-1.0f, 0f));
+            //this.gameObject.SendMessage("move", new Vector2(-1.0f, 0f));
         }
         if (Input.GetKey(KeyCode.D))
         {
-            this.gameObject.SendMessage("move", new Vector2(1.0f, 0f));
+            //this.gameObject.SendMessage("move", new Vector2(1.0f, 0f));
         }
         if (Input.GetKeyDown(KeyCode.F))
         {

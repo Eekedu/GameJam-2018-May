@@ -47,6 +47,10 @@ public class RoundManager : MonoBehaviour {
         {
             return new Vector2(m_oObject.transform.position.x, m_oObject.transform.position.y);
         }
+        public void AssignPlayerNumber(int dex)
+        {
+            m_oController.AssignPlayerNumber(dex);
+        }
     }
 
     private enum Phase
@@ -117,6 +121,7 @@ public class RoundManager : MonoBehaviour {
         m_pPhase = Phase.RP_Playing;
         m_tOverlayText.text = "Fight!";
         SpawnPlayer(1);
+        SpawnPlayer(2);
         m_fStartTime = Time.fixedTime + 1.0f;
     }
     private void ProcPhasePlay()
@@ -161,15 +166,16 @@ public class RoundManager : MonoBehaviour {
 
     private void SpawnPlayer(int playerdex)
     {
-        m_oActivePlayers[0] = new ActivePlayer(Instantiate(playerPrefab, new Vector3(m_v2PlayerSpawns[0].x, m_v2PlayerSpawns[0].y), Quaternion.identity));
-        m_aoPlayerHUDs[0].SetHealth(100, false);
+        m_oActivePlayers[playerdex-1] = new ActivePlayer(Instantiate(playerPrefab, new Vector3(m_v2PlayerSpawns[playerdex - 1].x, m_v2PlayerSpawns[playerdex - 1].y), Quaternion.identity));
+        m_aoPlayerHUDs[playerdex-1].SetHealth(100, false);
+        m_oActivePlayers[playerdex - 1].AssignPlayerNumber(playerdex);
     }
 
     private float fHealth = 100f;
     private void DamagePlayer(int playerdex, float fDamage)
     {
         fHealth -= fDamage;
-        m_aoPlayerHUDs[0].SetHealth(fHealth, true);
+        m_aoPlayerHUDs[playerdex - 1].SetHealth(fHealth, true);
     }
 
     private void SpawnTokens()

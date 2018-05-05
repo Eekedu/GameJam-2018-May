@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class movement : MonoBehaviour {
-    public float speed = 500f;
+    public float speed = 5f;
+    public float hMoveForce = 500f;
     private float timeLast;
     public float jumpingForce = 100f;
     private bool canJump = true;
@@ -20,16 +21,14 @@ public class movement : MonoBehaviour {
         selfSpri = this.GetComponent<SpriteRenderer>();
     }
 
-    void move(Vector2 dir)
+    public void move(Vector2 dir)
     {
-        if (!this.isRunning)
-        {
-            dir.Scale(new Vector2(speed, speed));
-            velocity.x = dir.x;
-            selfSpri.flipX = (velocity.x > .1);
+            float hComponent = dir.x;
+            body.AddForce(Vector2.right * hComponent * hMoveForce);
+            body.velocity = new Vector2(Mathf.Clamp(body.velocity.x, -speed, speed), body.velocity.y);
+            selfSpri.flipX = (body.velocity.x > .1);
             selfAni.SetBool("run", true);
             this.isRunning = true;
-        }
     }
 
     void setAnim(string type)
@@ -38,9 +37,9 @@ public class movement : MonoBehaviour {
         selfAni.runtimeAnimatorController = overide;
     }
 
-    void stop()
+    public void stop()
     {
-        velocity.x = 0;
+        body.velocity = new Vector2(0, body.velocity.y) ;
         selfAni.SetBool("run", false);
         this.isRunning = false;
     }
@@ -66,22 +65,10 @@ public class movement : MonoBehaviour {
 
     private void Update()   
     {
-        velocity.x *= 2f;
-        if (Mathf.Abs(velocity.x) > 2f)
-        {
-            velocity.x = (selfSpri.flipX)?2f:-2f;
-        }
-        if (Time.fixedTime >= timeLast)
-        {
-            timeLast = 0;
-            velocity.y = 0;
-        } else
-        {
-            velocity.y *= 0.95f;
-        }
         selfAni.SetBool("isFalling", body.velocity.y < -0.0001f);
-        selfAni.SetBool("isJumping", (velocity.y > 0.1f));
-        body.AddForce(velocity);
-        transform.position = new Vector2(transform.position.x + velocity.x, transform.position.y);
+        selfAni.SetBool("isJumping", (body.velocity.y > 0.1f));
+        //body.AddForce(velocity);
+        Debug.Log(body.velocity.ToString());
+        //transform.position = new Vector2(transform.position.x + velocity.x, transform.position.y);
     }
 }
