@@ -49,6 +49,7 @@ public class RoundManager : MonoBehaviour {
         ConvertPlayerSpawns();
         ConvertTokenSpawns();
         EnterPhaseStart();
+        SetPlayerCount(4);
         
 
 
@@ -56,12 +57,18 @@ public class RoundManager : MonoBehaviour {
 
     public void SetPlayerCount(int count)
     {
+        float fXStart = Screen.width * -0.5f;
+        float fYStart = (Screen.height * - 0.5f) + 75;
         m_iPlayerCount = count;
         m_aoPlayerHUDs = new PlayerHUDScript[count];
-        float fHUDStep = Screen.width / count + 1;
+        float fHUDStep = Screen.width / (count + 1);
+        Debug.Log("<" + fXStart.ToString() + "> <" + fYStart.ToString() + "> <" + fHUDStep.ToString() + ">");
         for (int i = 0; i < count; i++)
         {
-            m_aoPlayerHUDs[i] = Instantiate(m_preHUD, new Vector3(fHUDStep, 200), Quaternion.identity);
+            float fXPos = fXStart + ((i+1) * (fHUDStep));
+            //m_aoPlayerHUDs[i] = Instantiate(m_preHUD, new Vector3(fPos, 55), Quaternion.identity,this.transform);
+            m_aoPlayerHUDs[i] = Instantiate(m_preHUD, this.transform);
+            m_aoPlayerHUDs[i].transform.localPosition = new Vector3(fXPos, fYStart);
         }
     }
 
@@ -134,14 +141,14 @@ public class RoundManager : MonoBehaviour {
     private void SpawnPlayer(int playerdex)
     {
         Instantiate(playerPrefab, new Vector3(m_v2PlayerSpawns[0].x, m_v2PlayerSpawns[0].y), Quaternion.identity);
-        testHUD.SetHealth(100, false);
+        m_aoPlayerHUDs[0].SetHealth(100, false);
     }
 
     private float fHealth = 100f;
     private void DamagePlayer(int playerdex, float fDamage)
     {
         fHealth -= fDamage;
-        testHUD.SetHealth(fHealth, true);
+        m_aoPlayerHUDs[0].SetHealth(fHealth, true);
     }
 
     private void SpawnTokens()
@@ -204,7 +211,7 @@ public class RoundManager : MonoBehaviour {
         {
             if (tspawn.m_oObject==ttg)
             {
-                testHUD.SetToken(tspawn.m_tType);
+                m_aoPlayerHUDs[0].SetToken(tspawn.m_tType);
                 tspawn.m_bSpawning = true;
                 tspawn.m_fSpawnTime = Time.fixedTime + 5.0f;
                 Destroy(ttg.gameObject);
