@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class movement : MonoBehaviour {
-<<<<<<< HEAD
+public class movement : MonoBehaviour { 
     public RuntimeAnimatorController airC, fireC, waterC, earthC, elecC;
     public float speed = 500f;
-=======
->>>>>>> 5fd6497f6e98fea99e9b9035bc898e8d08db42e7
     private float timeLast;
     public float jumpingForce = 100f;
     private bool canJump = true;
