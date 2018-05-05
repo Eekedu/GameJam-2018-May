@@ -5,7 +5,7 @@ using System.Collections;
 public class SceneBoss : MonoBehaviour
 {
     public static SceneBoss g_oSceneBoss;
-    private Image m_oFadeUIImage;
+    private RawImage m_oFadeUIImage;
     public float m_fFadeSpeed = 0.8f;
     public enum FadeDirection
     {
@@ -32,7 +32,9 @@ public class SceneBoss : MonoBehaviour
         if (g_oSceneBoss != null) return;
         g_oSceneBoss = this;
         DontDestroyOnLoad(this);
-        m_oFadeUIImage = GetComponentInChildren<Image>();
+        m_oFadeUIImage = GetComponentInChildren<RawImage>();
+        Debug.Log(m_oFadeUIImage);
+        FadeIn();
     }
 
     public int GetSceneIndex(SceneSelect scene)
@@ -47,9 +49,9 @@ public class SceneBoss : MonoBehaviour
 
     private IEnumerator Fade(FadeDirection fadeDirection)
     {
-        float alpha = (fadeDirection == FadeDirection.FD_Out) ? 1 : 0;
-        float fadeEndValue = (fadeDirection == FadeDirection.FD_Out) ? 0 : 1;
-        if (fadeDirection == FadeDirection.FD_Out)
+        float alpha = (fadeDirection == FadeDirection.FD_In) ? 1 : 0;
+        float fadeEndValue = (fadeDirection == FadeDirection.FD_In) ? 0 : 1;
+        if (fadeDirection == FadeDirection.FD_In)
         {
             while (alpha >= fadeEndValue)
             {
@@ -71,7 +73,7 @@ public class SceneBoss : MonoBehaviour
     private void SetColorImage(ref float alpha, FadeDirection fadeDirection)
     {
         m_oFadeUIImage.color = new Color(m_oFadeUIImage.color.r, m_oFadeUIImage.color.g, m_oFadeUIImage.color.b, alpha);
-        alpha += Time.deltaTime * (1.0f / m_fFadeSpeed) * ((fadeDirection == FadeDirection.FD_Out) ? -1 : 1);
+        alpha += Time.deltaTime * (1.0f / m_fFadeSpeed) * ((fadeDirection == FadeDirection.FD_In) ? -1 : 1);
     }
 
 }
