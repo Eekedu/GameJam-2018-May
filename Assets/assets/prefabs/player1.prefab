@@ -175,6 +175,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.1
   jumpingForce: 10
+  airC: {fileID: 9100000, guid: fde16c0896e4a4b4ab8c3f9e76827cbf, type: 2}
+  fireC: {fileID: 9100000, guid: 8e0e5967435dd084dabcb3cf7c992ba9, type: 2}
 --- !u!212 &212508856508790254
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -6,6 +6,7 @@ public class movement : MonoBehaviour {
     public float speed = 500f;
     private float timeLast;
     public float jumpingForce = 100f;
+    public RuntimeAnimatorController airC, fireC, elecC, earthC, waterC;
     private bool canJump = true;
     private bool isRunning = false;
     private Vector2 velocity;
@@ -29,6 +30,21 @@ public class movement : MonoBehaviour {
             selfSpri.flipX = (velocity.x > .1);
             selfAni.SetBool("run", true);
             this.isRunning = true;
+        }
+    }
+
+    void setAnim(TokenScript.TokenType type)
+    {
+        RuntimeAnimatorController change = null;
+        switch (type)
+        {
+            case TokenScript.TokenType.TokenFire: change = fireC; break;
+            case TokenScript.TokenType.TokenWind: change = airC; break;
+        }
+        //AnimatorOverrideController overide = new AnimatorOverrideController((RuntimeAnimatorController)Resources.Load("assets/anims/playerAir"));
+        if (change != null)
+        {
+            selfAni.runtimeAnimatorController = fireC as RuntimeAnimatorController;
         }
     }
 
