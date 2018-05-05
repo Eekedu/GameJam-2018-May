@@ -48,7 +48,7 @@ public class movement : MonoBehaviour {
         //AnimatorOverrideController overide = new AnimatorOverrideController((RuntimeAnimatorController)Resources.Load("assets/anims/playerAir"));
         if (change != null)
         {
-            selfAni.runtimeAnimatorController = fireC as RuntimeAnimatorController;
+            selfAni.runtimeAnimatorController = change as RuntimeAnimatorController;
         }
     }
 
