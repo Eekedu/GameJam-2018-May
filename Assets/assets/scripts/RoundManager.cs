@@ -18,6 +18,8 @@ public class RoundManager : MonoBehaviour {
 
     private int m_iPlayerCount;
     private PlayerHUDScript[] m_aoPlayerHUDs;
+    private CameraScript m_oGameCamera;
+    private playerEffector[] m_oActivePlayers;
 
 
 
@@ -50,6 +52,7 @@ public class RoundManager : MonoBehaviour {
         ConvertTokenSpawns();
         EnterPhaseStart();
         SetPlayerCount(4);
+        m_oGameCamera = GetComponentInChildren<CameraScript>();
         
 
 
@@ -70,6 +73,7 @@ public class RoundManager : MonoBehaviour {
             m_aoPlayerHUDs[i] = Instantiate(m_preHUD, this.transform);
             m_aoPlayerHUDs[i].transform.localPosition = new Vector3(fXPos, fYStart);
         }
+        m_oActivePlayers = new playerEffector[count];
     }
 
     private void EnterPhaseStart()
@@ -140,7 +144,7 @@ public class RoundManager : MonoBehaviour {
 
     private void SpawnPlayer(int playerdex)
     {
-        Instantiate(playerPrefab, new Vector3(m_v2PlayerSpawns[0].x, m_v2PlayerSpawns[0].y), Quaternion.identity);
+        m_oActivePlayers[0] = Instantiate(playerPrefab, new Vector3(m_v2PlayerSpawns[0].x, m_v2PlayerSpawns[0].y), Quaternion.identity).GetComponent<playerEffector>();
         m_aoPlayerHUDs[0].SetHealth(100, false);
     }
 
@@ -186,6 +190,15 @@ public class RoundManager : MonoBehaviour {
         ttspawn.m_bSpawning = false;
     }
 
+    private Vector2 m_vTopLeftBound, m_vBottomRightBound;
+    private void UpdatePlayerBounds()
+    {
+        m_vTopLeftBound = new Vector2(Mathf.Min(m_oActivePlayers[0].gameObject.transform.position.x, 0), Mathf.Max(m_oActivePlayers[0].gameObject.transform.position.y, 0));
+        m_vBottomRightBound.x = Mathf.Max(m_oActivePlayers[0].gameObject.transform.position.x, 0);
+        m_vBottomRightBound.y = Mathf.Min(m_oActivePlayers[0].gameObject.transform.position.y, 0);
+        Debug.Log(m_vTopLeftBound.ToString() + " to " + m_vBottomRightBound.ToString());
+    }
+
     bool spawntest = true;
     float spawntimetest;
 	// Update is called once per frame
@@ -203,6 +216,8 @@ public class RoundManager : MonoBehaviour {
         {
             DamagePlayer(1, 15);
         }
+        UpdatePlayerBounds();
+        m_oGameCamera.SetBounds(m_vTopLeftBound, m_vBottomRightBound);
         //SpawnTokens();
     }
     public void GrabToken(TokenScript ttg)
