@@ -6,7 +6,7 @@ InputManager:
   serializedVersion: 2
   m_Axes:
   - serializedVersion: 3
-    m_Name: P1_Horizontal
+    m_Name: Horizontal
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: left
@@ -22,7 +22,7 @@ InputManager:
     axis: 0
     joyNum: 1
   - serializedVersion: 3
-    m_Name: P1_Vertical
+    m_Name: Vertical
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: down
@@ -38,7 +38,7 @@ InputManager:
     axis: 0
     joyNum: 1
   - serializedVersion: 3
-    m_Name: P1_Fire1
+    m_Name: Fire1
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -54,7 +54,7 @@ InputManager:
     axis: 0
     joyNum: 1
   - serializedVersion: 3
-    m_Name: P1_Fire2
+    m_Name: Fire2
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -70,7 +70,7 @@ InputManager:
     axis: 0
     joyNum: 1
   - serializedVersion: 3
-    m_Name: P1_Fire3
+    m_Name: Fire3
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -86,7 +86,7 @@ InputManager:
     axis: 0
     joyNum: 1
   - serializedVersion: 3
-    m_Name: P1_Jump
+    m_Name: Jump
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
