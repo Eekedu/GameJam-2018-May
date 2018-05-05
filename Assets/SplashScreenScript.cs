@@ -24,7 +24,7 @@ public class SplashScreenScript : MonoBehaviour {
         {
             if (SceneBoss.g_oSceneBoss.FadeComplete())
             {
-                Debug.Log("Fin.");
+                UnityEngine.SceneManagement.SceneManager.LoadScene(SceneBoss.g_oSceneBoss.GetSceneIndex(SceneBoss.SceneSelect.SS_Title));
             }
         }
 	}

@@ -42,6 +42,8 @@ public class SceneBoss : MonoBehaviour
         switch (scene)
         {
             case SceneSelect.SS_Null: return -1;
+            case SceneSelect.SS_Splash: return 0;
+            case SceneSelect.SS_Title: return 1;
         }
 
         return -1;
