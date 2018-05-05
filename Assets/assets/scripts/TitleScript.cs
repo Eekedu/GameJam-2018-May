@@ -13,4 +13,14 @@ public class TitleScript : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void PlayButtonClick()
+    {
+        SceneBoss.g_oSceneBoss.FadeOut();
+        while (!SceneBoss.g_oSceneBoss.FadeComplete())
+        {
+
+        }
+        UnityEngine.SceneManagement.SceneManager.LoadScene(3);
+    }
 }

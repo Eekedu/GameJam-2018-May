@@ -16,7 +16,8 @@ public class SceneBoss : MonoBehaviour
     {
         SS_Null,
         SS_Splash,
-        SS_Title
+        SS_Title,
+        SS_Test
     }
 
     public void FadeOut()
@@ -44,6 +45,7 @@ public class SceneBoss : MonoBehaviour
             case SceneSelect.SS_Null: return -1;
             case SceneSelect.SS_Splash: return 0;
             case SceneSelect.SS_Title: return 1;
+            case SceneSelect.SS_Test: return 3;
         }
 
         return -1;

@@ -21,22 +21,33 @@ public class RoundManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        SceneBoss.g_oSceneBoss.FadeIn();
+        spawntimetest = Time.fixedTime + 1.0f;
+        ConvertPlayerSpawns();
+        ConvertTokenSpawns();
+    }
+
+    private void ConvertPlayerSpawns()
+    {
         playerController[] pcspots = FindObjectsOfType<playerController>();
         m_v2PlayerSpawns = new Vector2[pcspots.Length];
         int ddex = 0;
         foreach (playerController pcon in pcspots)
         {
-            m_v2PlayerSpawns[ddex] = new Vector2(pcon.transform.position.x,pcon.transform.position.y);
+            m_v2PlayerSpawns[ddex] = new Vector2(pcon.transform.position.x, pcon.transform.position.y);
             Destroy(pcon.gameObject);
         }
-        spawntimetest = Time.fixedTime + 1.0f;
+    }
+
+    private void ConvertTokenSpawns()
+    {
         TokenScript[] tkspots = FindObjectsOfType<TokenScript>();
         m_TokenSpawns = new TokenSpawn[tkspots.Length];
-        ddex = 0;
+        int ddex = 0;
         foreach (TokenScript tkspot in tkspots)
         {
             m_TokenSpawns[ddex] = new TokenSpawn();
-            m_TokenSpawns[ddex].m_vPosition = new Vector2(tkspot.transform.position.x,tkspot.transform.position.y);
+            m_TokenSpawns[ddex].m_vPosition = new Vector2(tkspot.transform.position.x, tkspot.transform.position.y);
             m_TokenSpawns[ddex].m_tType = tkspot.GetTokenType();
             m_TokenSpawns[ddex].m_bSpawning = true;
             m_TokenSpawns[ddex].m_fSpawnTime = Time.fixedTime + 2.0f;
