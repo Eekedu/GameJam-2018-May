@@ -14,8 +14,12 @@ public class PlayerHUDScript : MonoBehaviour {
     float m_fFlashTime;
 
     public Sprite m_preEarthToken;
-	// Use this for initialization
-	void Start () {
+    public Sprite m_preWindToken;
+    public Sprite m_preWaterToken;
+    public Sprite m_preFireToken;
+    public Sprite m_preElectroToken;
+    // Use this for initialization
+    void Start () {
         Text[] textitems = GetComponentsInChildren<Text>();
         m_tTitle = textitems[0];
         m_tHealth = textitems[1];
@@ -62,6 +66,18 @@ public class PlayerHUDScript : MonoBehaviour {
                 break;
             case TokenScript.TokenType.TokenEarth:
                 m_iToken.sprite = m_preEarthToken;
+                break;
+            case TokenScript.TokenType.TokenWind:
+                m_iToken.sprite = m_preWindToken;
+                break;
+            case TokenScript.TokenType.TokenWater:
+                m_iToken.sprite = m_preWaterToken;
+                break;
+            case TokenScript.TokenType.TokenFire:
+                m_iToken.sprite = m_preFireToken;
+                break;
+            case TokenScript.TokenType.TokenElectric:
+                m_iToken.sprite = m_preElectroToken;
                 break;
 
         }

@@ -9,6 +9,12 @@ public class RoundManager : MonoBehaviour {
     TokenSpawn[] m_TokenSpawns;
     public GameObject playerPrefab;
     public GameObject tokenPrefab;
+    public TokenScript preEarthToken;
+    public TokenScript preWindToken;
+    public TokenScript preFireToken;
+    public TokenScript preWaterToken;
+    public TokenScript preElectroToken;
+
 
     PlayerHUDScript testHUD;
 
@@ -103,10 +109,13 @@ public class RoundManager : MonoBehaviour {
             m_TokenSpawns[ddex] = new TokenSpawn();
             m_TokenSpawns[ddex].m_vPosition = new Vector2(tkspot.transform.position.x, tkspot.transform.position.y);
             m_TokenSpawns[ddex].m_tType = tkspot.GetTokenType();
+            Debug.Log("Consumed " + tkspot.GetTokenType().ToString());
             m_TokenSpawns[ddex].m_bSpawning = true;
             m_TokenSpawns[ddex].m_fSpawnTime = Time.fixedTime + 2.0f;
             Destroy(tkspot.gameObject);
+            ddex++;
         }
+        Debug.Log("Created " + ddex.ToString() + " token spawns.");
     }
 
     private void SpawnPlayer(int playerdex)
@@ -124,6 +133,7 @@ public class RoundManager : MonoBehaviour {
 
     private void SpawnTokens()
     {
+
         foreach (TokenSpawn tspawn in m_TokenSpawns)
         {
             if (tspawn.m_bSpawning)
@@ -138,7 +148,19 @@ public class RoundManager : MonoBehaviour {
 
     private void SpawnToken(TokenSpawn ttspawn)
     {
-        TokenScript tscrip = Instantiate(tokenPrefab, new Vector3(ttspawn.m_vPosition.x, ttspawn.m_vPosition.y), Quaternion.identity).GetComponent<TokenScript>();
+        TokenScript targetToken=null;
+        switch (ttspawn.m_tType)
+        {
+            case TokenScript.TokenType.TokenEarth: targetToken = preEarthToken; break;
+            case TokenScript.TokenType.TokenWind: targetToken = preWindToken; break;
+            case TokenScript.TokenType.TokenWater: targetToken = preWaterToken; break;
+            case TokenScript.TokenType.TokenFire: targetToken = preFireToken; break;
+            case TokenScript.TokenType.TokenElectric: targetToken = preElectroToken; break;
+
+        }
+        if (targetToken == null) return;
+
+        TokenScript tscrip = Instantiate(targetToken, new Vector3(ttspawn.m_vPosition.x, ttspawn.m_vPosition.y), Quaternion.identity).GetComponent<TokenScript>();
         ttspawn.m_oObject = tscrip;
         tscrip.SetTokenType(ttspawn.m_tType);
         ttspawn.m_bSpawning = false;

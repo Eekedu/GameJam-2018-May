@@ -10,7 +10,7 @@ public class TokenScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        m_ttTokenType = MyType;
 	}
 	
 	// Update is called once per frame
@@ -45,7 +45,7 @@ public class TokenScript : MonoBehaviour {
 
     public TokenType GetTokenType()
     {
-        return TokenType.TokenEarth;
+        return m_ttTokenType;
     }
     public void SetTokenType(TokenType settype)
     {
