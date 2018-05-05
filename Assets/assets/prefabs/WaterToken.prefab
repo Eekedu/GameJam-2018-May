@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4576813646852916}
   - component: {fileID: 212895994870951810}
+  - component: {fileID: 95680879312291646}
   m_Layer: 0
   m_Name: New Sprite
   m_TagString: Untagged
@@ -37,7 +38,6 @@ GameObject:
   - component: {fileID: 4012228233777328}
   - component: {fileID: 61987830973310246}
   - component: {fileID: 114546966362864318}
-  - component: {fileID: 95855604721008770}
   m_Layer: 0
   m_Name: WaterToken
   m_TagString: Untagged
@@ -97,13 +97,13 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 0.8}
   m_EdgeRadius: 0
---- !u!95 &95855604721008770
+--- !u!95 &95680879312291646
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1806514390334702}
+  m_GameObject: {fileID: 1067359406304556}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 44fd348ae85cee8469f16a142b39bfe5, type: 2}
@@ -162,7 +162,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 954b6b6dee1f3864d83383932651c586, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 28d8b8bf75feb7b438cf5257d831df8a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

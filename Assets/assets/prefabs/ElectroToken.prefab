@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4330778449345884}
   - component: {fileID: 212564420470897670}
+  - component: {fileID: 95353064034180944}
   m_Layer: 0
   m_Name: New Sprite
   m_TagString: Untagged
@@ -37,7 +38,6 @@ GameObject:
   - component: {fileID: 4809474184496098}
   - component: {fileID: 61209589392621724}
   - component: {fileID: 114329622679607970}
-  - component: {fileID: 95031264307143126}
   m_Layer: 0
   m_Name: ElectroToken
   m_TagString: Untagged
@@ -65,7 +65,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1331091593940180}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.76, y: -1.36, z: -0.024926912}
+  m_LocalPosition: {x: -4.97, y: -1.36, z: -0.024926912}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4330778449345884}
@@ -97,13 +97,13 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 0.8}
   m_EdgeRadius: 0
---- !u!95 &95031264307143126
+--- !u!95 &95353064034180944
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1331091593940180}
+  m_GameObject: {fileID: 1202425540506342}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: beb0cf01a3337fe40b8e867553647848, type: 2}
@@ -162,7 +162,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 954b6b6dee1f3864d83383932651c586, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 912e8e2d6c7658e4886386bee154207c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

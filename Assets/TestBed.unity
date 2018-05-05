@@ -367,7 +367,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8adba5938290f614f9b828d74bf714a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackPrefab: {fileID: 0}
   firePrefab: {fileID: 0}
   airPrefab: {fileID: 0}
   WaterPrefab: {fileID: 0}
@@ -1051,11 +1050,6 @@ Prefab:
     - target: {fileID: 4334956926130288, guid: 90494300263b76f48a73231acf3db304, type: 2}
       propertyPath: m_RootOrder
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 212673235554259916, guid: 90494300263b76f48a73231acf3db304,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 90494300263b76f48a73231acf3db304, type: 2}

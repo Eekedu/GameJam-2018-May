@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4647989831236324}
   - component: {fileID: 212765366787290860}
+  - component: {fileID: 95883549978817038}
   m_Layer: 0
   m_Name: New Sprite
   m_TagString: Untagged
@@ -37,7 +38,6 @@ GameObject:
   - component: {fileID: 4224057038271916}
   - component: {fileID: 61437301931390958}
   - component: {fileID: 114969648307013188}
-  - component: {fileID: 95856836204562950}
   m_Layer: 0
   m_Name: WindToken
   m_TagString: Untagged
@@ -52,7 +52,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1605166810517870}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.75, y: -1.36, z: -0.024926912}
+  m_LocalPosition: {x: 5.21, y: -1.36, z: -0.024926912}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4647989831236324}
@@ -97,16 +97,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 0.8}
   m_EdgeRadius: 0
---- !u!95 &95856836204562950
+--- !u!95 &95883549978817038
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1605166810517870}
+  m_GameObject: {fileID: 1156348058970728}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 92601d0b58e70f540899b4301134a3b7, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5cec81da92185c141891c2c80e707b8a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -162,7 +162,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 954b6b6dee1f3864d83383932651c586, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 09e77317ec625174ebe18a559232c317, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
