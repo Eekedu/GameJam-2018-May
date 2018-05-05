@@ -3,13 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class playerEffector : MonoBehaviour {
-    TokenScript.TokenType status = TokenScript.TokenType.TokenNone;
+    TokenScript.TokenType status = TokenScript.TokenType.TokenFire;
+    public GameObject attackPrefab;
+
+    private void Start()
+    {
+        attackPrefab = GameObject.FindGameObjectWithTag("TokenFire");
+    }
 
     void pickup(int type)
     {
         if (m_lastToken == null) return;
         status = m_lastToken.GetTokenType() ;
         FindObjectOfType<RoundManager>().GrabToken(m_lastToken);
+        attackPrefab = GameObject.FindGameObjectWithTag(status.ToString());
         changeSprite();
     }
 
@@ -40,7 +47,9 @@ public class playerEffector : MonoBehaviour {
         }
     }
 
-    void fireAttack(Vector2 dir) { }
+    void fireAttack(Vector2 dir) {
+        Instantiate(attackPrefab, this.transform);
+    }
     void waterAttack(Vector2 dir) { }
     void lightAttack(Vector2 dir) { }
     void earthAttack(Vector2 dir) { }

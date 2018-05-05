@@ -38,6 +38,11 @@ public class playerController : MonoBehaviour {
             this.gameObject.SendMessage("pickup",1);
         }
 
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            this.gameObject.SendMessage("attack", new Vector2(0,0));
+        }
+
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown(playerPrefix + "Fire1"))
         {
             Debug.Log(playerPrefix + "Fire1");
