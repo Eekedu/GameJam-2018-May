@@ -7,7 +7,6 @@ public class playerController : MonoBehaviour {
     GameObject pickup;
 	// Use this for initialization
 	void Start () {
-		
 	}
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -21,6 +20,9 @@ public class playerController : MonoBehaviour {
         if (moveX != 0)
         {
             SendMessage("move", new Vector2(moveX, 0f), SendMessageOptions.RequireReceiver);
+        } else
+        {
+            SendMessage("stop", null);
         }
 
         if (Input.GetKey(KeyCode.A))
@@ -36,7 +38,7 @@ public class playerController : MonoBehaviour {
             this.gameObject.SendMessage("pickup",1);
         }
 
-        if (Input.GetButtonDown(playerPrefix + "Fire1"))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown(playerPrefix + "Fire1"))
         {
             Debug.Log(playerPrefix + "Fire1");
             SendMessage("jump", null, SendMessageOptions.RequireReceiver);
