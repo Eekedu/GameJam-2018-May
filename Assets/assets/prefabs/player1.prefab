@@ -196,6 +196,7 @@ MonoBehaviour:
   speed: 0.1
   hMoveForce: 5
   jumpingForce: 10
+  norm: {fileID: 0}
   airC: {fileID: 9100000, guid: fde16c0896e4a4b4ab8c3f9e76827cbf, type: 2}
   fireC: {fileID: 9100000, guid: 8e0e5967435dd084dabcb3cf7c992ba9, type: 2}
   elecC: {fileID: 9100000, guid: 13729e6c9d93db44aa2ed5d5a8506329, type: 2}
