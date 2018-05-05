@@ -41,14 +41,14 @@ public class movement : MonoBehaviour {
         }
     }
 
-    private void Update()
+    private void Update()   
     {
         if (Mathf.Abs(velocity.x) > speed)
         {
             velocity.x = speed;
         }
         velocity.x *= 0.7f;
-        Debug.Log(Time.fixedTime + " " + timeLast);
+        //Debug.Log(Time.fixedTime + " " + timeLast);
         if (Time.fixedTime >= timeLast)
         {
             timeLast = 0;
