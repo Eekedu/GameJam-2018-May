@@ -6,18 +6,13 @@ public class movement : MonoBehaviour {
     public float speed = 5f;
     public float jumpingForce = 1f;
     bool canJump = true;
-    Vector2 velocity;
-    Vector2 velocityDampener = new Vector2(0.7f, 0.7f);
-    Rigidbody2D body;
+    private Vector2 velocity;
+    private Vector2 velocityDampener = new Vector2(0.7f, 0.7f);
 
-    private void Start()
-    {
-        body = GetComponent<Rigidbody2D>();
-    }
     void move(Vector2 dir)
     {
         dir.Scale(new Vector2(speed, speed));
-        velocity = dir;
+        velocity.x = dir.x;
     }
 
     void jump()
@@ -25,7 +20,7 @@ public class movement : MonoBehaviour {
         if (canJump)
         {
             Vector2 upForce = Vector2.up * jumpingForce;
-            velocity.y = upForce.y;
+            velocity.y += upForce.y;
             if (velocity.y > 5f)
             {
                 canJump = false;

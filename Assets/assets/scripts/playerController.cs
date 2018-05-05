@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class playerController : MonoBehaviour {
+    public string playerPrefix = "P1_";
     GameObject pickup;
 	// Use this for initialization
 	void Start () {
@@ -16,20 +17,20 @@ public class playerController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        float moveX = (Input.GetAxis("Horizontal"));
+        float moveX = (Input.GetAxis(playerPrefix + "Horizontal"));
         if (moveX != 0)
         {
-            SendMessage("move", new Vector2(moveX, 0f));
+            this.gameObject.SendMessage("move", new Vector2(moveX, 0f));
         }
 
-        if (Input.GetKeyDown("space") || Input.GetButtonDown("Fire1"))
+        if (Input.GetKeyDown("space") || Input.GetButtonDown(playerPrefix + "Fire1"))
         {
-            SendMessage("jump", null);
+            this.gameObject.SendMessage("jump", null);
         }
-        if (Input.GetKeyDown("f") || Input.GetButtonDown("Fire2"))
+        if (Input.GetKeyDown("f") || Input.GetButtonDown(playerPrefix + "Fire2"))
         {
             Debug.Log("pickup");
-            SendMessage("pickup", 1);
+            this.gameObject.SendMessage("pickup", 1);
         }
 	}
 }
