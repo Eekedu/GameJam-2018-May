@@ -9,7 +9,7 @@ public class playerEffector : MonoBehaviour {
     {
         if (m_lastToken == null) return;
         status = m_lastToken.GetTokenType() ;
-        Debug.Log(status);
+        FindObjectOfType<RoundManager>().GrabToken(m_lastToken);
         changeSprite();
     }
 

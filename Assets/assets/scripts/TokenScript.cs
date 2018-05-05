@@ -6,6 +6,7 @@ public class TokenScript : MonoBehaviour {
 
     public enum TokenType { TokenEarth,TokenWind,TokenWater,TokenFire,TokenElectric,TokenNone}
     public TokenType MyType = TokenType.TokenEarth;
+    private TokenType m_ttTokenType;
 
 	// Use this for initialization
 	void Start () {
@@ -45,5 +46,9 @@ public class TokenScript : MonoBehaviour {
     public TokenType GetTokenType()
     {
         return TokenType.TokenEarth;
+    }
+    public void SetTokenType(TokenType settype)
+    {
+        m_ttTokenType = settype;
     }
 }
