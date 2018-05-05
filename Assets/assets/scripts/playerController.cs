@@ -24,16 +24,9 @@ public class playerController : MonoBehaviour {
     private void FixedUpdate()
     {
         float moveX = (Input.GetAxis(playerPrefix + "Horizontal"));
-        Debug.Log(playerPrefix + "Horizontal is " + moveX.ToString() );
         moveX = Mathf.Clamp(moveX, -1.0f, 1.0f);
-        //SendMessage("move", new Vector2(moveX, 0f), SendMessageOptions.RequireReceiver);
         mmove.move(new Vector2(moveX, 0.0f));
-        if (Mathf.Abs(moveX) >= 0.01f)
-        {
-            //            SendMessage("move", new Vector2(moveX, 0f), SendMessageOptions.RequireReceiver);
-        }
-        else
-        {
+        if (Mathf.Abs(moveX) <= 0.01f) { 
             mmove.stop();
         }
     }
@@ -42,14 +35,7 @@ public class playerController : MonoBehaviour {
     void Update () {
 
 
-        if (Input.GetKey(KeyCode.A))
-        {
-            //this.gameObject.SendMessage("move", new Vector2(-1.0f, 0f));
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            //this.gameObject.SendMessage("move", new Vector2(1.0f, 0f));
-        }
+
         if (Input.GetKeyDown(KeyCode.F))
         {
             this.gameObject.SendMessage("pickup",1);

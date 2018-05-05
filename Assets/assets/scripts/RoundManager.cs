@@ -68,7 +68,6 @@ public class RoundManager : MonoBehaviour {
 	void Start () {
         m_tOverlayText = GetComponentInChildren<Text>();
         if (SceneBoss.g_oSceneBoss!=null) SceneBoss.g_oSceneBoss.FadeIn();
-        spawntimetest = Time.fixedTime + 1.0f;
         ConvertPlayerSpawns();
         ConvertTokenSpawns();
         EnterPhaseStart();
@@ -216,14 +215,18 @@ public class RoundManager : MonoBehaviour {
     private Vector2 m_vTopLeftBound, m_vBottomRightBound;
     private void UpdatePlayerBounds()
     {
-        m_vTopLeftBound = new Vector2(Mathf.Min(m_oActivePlayers[0].GetPosition().x, 0), Mathf.Max(m_oActivePlayers[0].GetPosition().y, 0));
-        m_vBottomRightBound.x = Mathf.Max(m_oActivePlayers[0].GetPosition().x, 0);
-        m_vBottomRightBound.y = Mathf.Min(m_oActivePlayers[0].GetPosition().y, 0);
-        Debug.Log(m_vTopLeftBound.ToString() + " to " + m_vBottomRightBound.ToString());
+        m_vTopLeftBound = new Vector2();
+        m_vBottomRightBound = new Vector2();
+        foreach (ActivePlayer player in m_oActivePlayers)
+        {
+            m_vTopLeftBound.x = Mathf.Min(player.GetPosition().x, m_vTopLeftBound.x);
+            m_vTopLeftBound.y = Mathf.Max(player.GetPosition().y, m_vTopLeftBound.y);
+            m_vBottomRightBound.x = Mathf.Max(player.GetPosition().x, m_vBottomRightBound.x);
+            m_vBottomRightBound.y = Mathf.Min(player.GetPosition().y, m_vBottomRightBound.y);
+        }
     }
 
-    bool spawntest = true;
-    float spawntimetest;
+
 	// Update is called once per frame
 	void Update () {
         switch (m_pPhase)
