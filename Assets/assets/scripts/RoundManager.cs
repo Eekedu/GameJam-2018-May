@@ -10,6 +10,8 @@ public class RoundManager : MonoBehaviour {
     public GameObject playerPrefab;
     public GameObject tokenPrefab;
 
+    PlayerHUDScript testHUD;
+
 
     private class TokenSpawn
     {
@@ -34,11 +36,12 @@ public class RoundManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         m_tOverlayText = GetComponentInChildren<Text>();
-        SceneBoss.g_oSceneBoss.FadeIn();
+        if (SceneBoss.g_oSceneBoss!=null) SceneBoss.g_oSceneBoss.FadeIn();
         spawntimetest = Time.fixedTime + 1.0f;
         ConvertPlayerSpawns();
         ConvertTokenSpawns();
         EnterPhaseStart();
+        testHUD = GetComponentInChildren<PlayerHUDScript>();
     }
 
     
@@ -109,6 +112,14 @@ public class RoundManager : MonoBehaviour {
     private void SpawnPlayer(int playerdex)
     {
         Instantiate(playerPrefab, new Vector3(m_v2PlayerSpawns[0].x, m_v2PlayerSpawns[0].y), Quaternion.identity);
+        testHUD.SetHealth(100, false);
+    }
+
+    private float fHealth = 100f;
+    private void DamagePlayer(int playerdex, float fDamage)
+    {
+        fHealth -= fDamage;
+        testHUD.SetHealth(fHealth, true);
     }
 
     private void SpawnTokens()
@@ -146,6 +157,10 @@ public class RoundManager : MonoBehaviour {
                 ProcPhasePlay();
                 break;
         }
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            DamagePlayer(1, 15);
+        }
         //SpawnTokens();
     }
     public void GrabToken(TokenScript ttg)
@@ -154,9 +169,11 @@ public class RoundManager : MonoBehaviour {
         {
             if (tspawn.m_oObject==ttg)
             {
+                testHUD.SetToken(tspawn.m_tType);
                 tspawn.m_bSpawning = true;
                 tspawn.m_fSpawnTime = Time.fixedTime + 5.0f;
                 Destroy(ttg.gameObject);
+
             }
         }
     }
