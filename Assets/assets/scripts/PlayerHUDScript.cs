@@ -18,6 +18,8 @@ public class PlayerHUDScript : MonoBehaviour {
     public Sprite m_preWaterToken;
     public Sprite m_preFireToken;
     public Sprite m_preElectroToken;
+
+
     // Use this for initialization
     void Start () {
         Text[] textitems = GetComponentsInChildren<Text>();
@@ -41,6 +43,9 @@ public class PlayerHUDScript : MonoBehaviour {
 
         }
     }
+
+
+
 
     public void SetPlayerTitle(string text)
     {

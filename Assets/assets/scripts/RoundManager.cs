@@ -14,9 +14,11 @@ public class RoundManager : MonoBehaviour {
     public TokenScript preFireToken;
     public TokenScript preWaterToken;
     public TokenScript preElectroToken;
+    public PlayerHUDScript m_preHUD;
 
+    private int m_iPlayerCount;
+    private PlayerHUDScript[] m_aoPlayerHUDs;
 
-    PlayerHUDScript testHUD;
 
 
     private class TokenSpawn
@@ -47,10 +49,21 @@ public class RoundManager : MonoBehaviour {
         ConvertPlayerSpawns();
         ConvertTokenSpawns();
         EnterPhaseStart();
-        testHUD = GetComponentInChildren<PlayerHUDScript>();
+        
+
+
     }
 
-    
+    public void SetPlayerCount(int count)
+    {
+        m_iPlayerCount = count;
+        m_aoPlayerHUDs = new PlayerHUDScript[count];
+        float fHUDStep = Screen.width / count + 1;
+        for (int i = 0; i < count; i++)
+        {
+            m_aoPlayerHUDs[i] = Instantiate(m_preHUD, new Vector3(fHUDStep, 200), Quaternion.identity);
+        }
+    }
 
     private void EnterPhaseStart()
     {
