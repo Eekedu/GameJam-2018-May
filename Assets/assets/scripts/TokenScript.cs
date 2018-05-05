@@ -21,11 +21,9 @@ public class TokenScript : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject other = collision.gameObject;
-        Debug.Log("Zap");
         if (other == null) return;
         if (other.tag=="Player")
         {
-            Debug.Log("Dos");
             playerEffector effector = other.GetComponent<playerEffector>();
             effector.SetNearToken(this);
         }

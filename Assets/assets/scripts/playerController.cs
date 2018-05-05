@@ -29,7 +29,6 @@ public class playerController : MonoBehaviour {
         }
         if (Input.GetKeyDown("f") || Input.GetButtonDown(playerPrefix + "Fire2"))
         {
-            Debug.Log("pickup");
             this.gameObject.SendMessage("pickup", 1);
         }
 	}
