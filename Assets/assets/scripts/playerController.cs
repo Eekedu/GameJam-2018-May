@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class playerController : MonoBehaviour {
-    public string playerPrefix = "P1_";
+    public string playerPrefix;
     GameObject pickup;
 	// Use this for initialization
 	void Start () {
