@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RoundManager : MonoBehaviour {
 
@@ -19,12 +20,57 @@ public class RoundManager : MonoBehaviour {
         public float m_fSpawnTime;
     }
 
+    private enum Phase
+    {
+        RP_Initial,
+        RP_Starting,
+        RP_Playing
+    }
+
+    private Phase m_pPhase = Phase.RP_Initial;
+    private float m_fStartTime;
+    private Text m_tOverlayText;
+
 	// Use this for initialization
 	void Start () {
+        m_tOverlayText = GetComponentInChildren<Text>();
         SceneBoss.g_oSceneBoss.FadeIn();
         spawntimetest = Time.fixedTime + 1.0f;
         ConvertPlayerSpawns();
         ConvertTokenSpawns();
+        EnterPhaseStart();
+    }
+
+    
+
+    private void EnterPhaseStart()
+    {
+        m_pPhase = Phase.RP_Starting;
+        m_fStartTime = Time.fixedTime + 5.1f;
+    }
+    private void ProcPhaseStart()
+    {
+        float fTimeToGo = m_fStartTime - Time.fixedTime;
+        int iTimeToGo = (int)Mathf.FloorToInt(fTimeToGo);
+        if (iTimeToGo > 0)
+        {
+            string sTimeToGo = iTimeToGo.ToString();
+            m_tOverlayText.text = sTimeToGo + "...";
+        } else
+        {
+            EnterPhasePlay();
+        }
+    }
+
+    private void EnterPhasePlay()
+    {
+        m_pPhase = Phase.RP_Playing;
+        m_tOverlayText.text = "Fight!";
+        SpawnPlayer(1);
+    }
+    private void ProcPhasePlay()
+    {
+        SpawnTokens();
     }
 
     private void ConvertPlayerSpawns()
@@ -86,15 +132,16 @@ public class RoundManager : MonoBehaviour {
     float spawntimetest;
 	// Update is called once per frame
 	void Update () {
-        if (spawntest)
+        switch (m_pPhase)
         {
-            if (Time.fixedTime >= spawntimetest)
-            {
-                SpawnPlayer(1);
-                spawntest = false;
-            }
+            case Phase.RP_Starting:
+                ProcPhaseStart();
+                break;
+            case Phase.RP_Playing:
+                ProcPhasePlay();
+                break;
         }
-        SpawnTokens();
+        //SpawnTokens();
     }
     public void GrabToken(TokenScript ttg)
     {

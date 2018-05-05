@@ -6,7 +6,7 @@ public class SceneBoss : MonoBehaviour
 {
     public static SceneBoss g_oSceneBoss;
     private RawImage m_oFadeUIImage;
-    public float m_fFadeSpeed = 1.8f;
+    public float m_fFadeSpeed = 0.9f;
     public enum FadeDirection
     {
         FD_In, //Alpha = 1
