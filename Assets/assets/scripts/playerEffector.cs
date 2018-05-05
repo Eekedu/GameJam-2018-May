@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class playerEffector : MonoBehaviour {
-    int status = 0;
+    TokenScript.TokenType status = TokenScript.TokenType.TokenNone;
 
     void pickup(int type)
     {
@@ -32,11 +32,11 @@ public class playerEffector : MonoBehaviour {
     {
         switch (status)
         {
-            case 1: { fireAttack(dir); } break;
-            case 2: { waterAttack(dir); } break;
-            case 3: { lightAttack(dir); } break;
-            case 4: { earthAttack(dir); } break;
-            case 5: { windAttack(dir); } break;
+            case TokenScript.TokenType.TokenFire: { fireAttack(dir); } break;
+            case TokenScript.TokenType.TokenWater: { waterAttack(dir); } break;
+            case TokenScript.TokenType.TokenElectric: { lightAttack(dir); } break;
+            case TokenScript.TokenType.TokenEarth: { earthAttack(dir); } break;
+            case TokenScript.TokenType.TokenWind: { windAttack(dir); } break;
         }
     }
 

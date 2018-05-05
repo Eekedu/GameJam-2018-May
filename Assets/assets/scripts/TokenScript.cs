@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class TokenScript : MonoBehaviour {
 
+    public enum TokenType { TokenEarth,TokenWind,TokenWater,TokenFire,TokenElectric,TokenNone}
+    public TokenType MyType = TokenType.TokenEarth;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -40,8 +43,8 @@ public class TokenScript : MonoBehaviour {
         }
     }
 
-    public int GetTokenType()
+    public TokenType GetTokenType()
     {
-        return 69;
+        return TokenType.TokenEarth;
     }
 }
