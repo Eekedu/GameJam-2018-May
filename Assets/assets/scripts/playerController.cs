@@ -20,16 +20,17 @@ public class playerController : MonoBehaviour {
         float moveX = (Input.GetAxis(playerPrefix + "Horizontal"));
         if (moveX != 0)
         {
-            this.gameObject.SendMessage("move", new Vector2(moveX, 0f));
+            SendMessage("move", new Vector2(moveX, 0f), SendMessageOptions.RequireReceiver);
         }
 
         if (Input.GetButtonDown(playerPrefix + "Fire1"))
         {
-            this.gameObject.SendMessage("jump", null);
+            Debug.Log(playerPrefix + "Fire1");
+            SendMessage("jump", null, SendMessageOptions.RequireReceiver);
         }
         if (Input.GetButtonDown(playerPrefix + "Fire2"))
         {
-            this.gameObject.SendMessage("pickup", 1);
+            SendMessage("pickup", 1, SendMessageOptions.RequireReceiver);
         }
 	}
 }
