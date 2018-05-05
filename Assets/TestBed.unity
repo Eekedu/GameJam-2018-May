@@ -368,6 +368,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPrefab: {fileID: 0}
+  firePrefab: {fileID: 0}
+  airPrefab: {fileID: 0}
+  WaterPrefab: {fileID: 0}
+  EarthPrefab: {fileID: 0}
+  ElePrefab: {fileID: 0}
 --- !u!114 &84040289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,6 +388,11 @@ MonoBehaviour:
   speed: 0.1
   hMoveForce: 5
   jumpingForce: 10
+  airC: {fileID: 0}
+  fireC: {fileID: 0}
+  elecC: {fileID: 0}
+  earthC: {fileID: 0}
+  waterC: {fileID: 0}
 --- !u!114 &84040290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -916,7 +926,7 @@ GameObject:
   m_Component:
   - component: {fileID: 796718341}
   - component: {fileID: 796718340}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}

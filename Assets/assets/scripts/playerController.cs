@@ -46,9 +46,8 @@ public class playerController : MonoBehaviour {
             this.gameObject.SendMessage("attack", new Vector2(0,0));
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown(playerPrefix + "Fire1"))
+        if (Input.GetKey(KeyCode.Space) || Input.GetButton(playerPrefix + "Fire1"))
         {
-            Debug.Log(playerPrefix + "Fire1");
             SendMessage("jump", null, SendMessageOptions.RequireReceiver);
         }
         if (Input.GetButtonDown(playerPrefix + "Fire2"))

@@ -61,9 +61,9 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 0.01
-  m_LinearDrag: 50
+  m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 50
+  m_GravityScale: 10
   m_Material: {fileID: 6200000, guid: 5a921e18a4d4bcc46a39dd96f3b8ed52, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -154,6 +154,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPrefab: {fileID: 0}
+  firePrefab: {fileID: 0}
+  airPrefab: {fileID: 0}
+  WaterPrefab: {fileID: 0}
+  EarthPrefab: {fileID: 0}
+  ElePrefab: {fileID: 0}
 --- !u!114 &114489207184920984
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -192,6 +197,11 @@ MonoBehaviour:
   speed: 0.1
   hMoveForce: 5
   jumpingForce: 10
+  airC: {fileID: 0}
+  fireC: {fileID: 0}
+  elecC: {fileID: 0}
+  earthC: {fileID: 0}
+  waterC: {fileID: 0}
 --- !u!212 &212763135605940114
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -60,29 +60,44 @@ public class movement : MonoBehaviour {
 
     void jump()
     {
+        Debug.Log(canJump.ToString());
         if (canJump)
         {
-            Vector2 upForce = Vector2.up * jumpingForce;
-            velocity.y = upForce.y;
-            timeLast = Time.fixedTime + 0.25f;
+            body.AddForce(Vector2.up * 20.0f);
             canJump = false;
+            isJumping = true;
+        } else
+        {
+            if (isJumping)
+            {
+               body.AddForce(Vector2.up*0.5f);
+            }
         }
     }
 
+    bool isJumping;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        return;
         if (collision.gameObject.tag == "Floor")
         {
             canJump = true;
         }
     }
 
+    private void GroundCheck()
+    {
+        bool grounded =  Physics2D.Linecast(transform.position, new Vector2(transform.position.x,transform.position.y) - (Vector2.up*1.0f),1<<LayerMask.NameToLayer("Ground"));
+        canJump = (body.velocity.y <= 0f) && (grounded) && (!isJumping);
+    }
     private void Update()   
     {
+        GroundCheck();
+        if (body.velocity.y < 0) isJumping = false;
         selfAni.SetBool("isFalling", body.velocity.y < -0.0001f);
         selfAni.SetBool("isJumping", (body.velocity.y > 0.1f));
         //body.AddForce(velocity);
-        Debug.Log(body.velocity.ToString());
         //transform.position = new Vector2(transform.position.x + velocity.x, transform.position.y);
     }
 }
