@@ -9,6 +9,7 @@ public class playerEffector : MonoBehaviour {
     private void Start()
     {
         attackPrefab = GameObject.FindGameObjectWithTag("TokenFire");
+        SendMessage("setAnim", status.ToString());
     }
 
     void pickup(int type)
@@ -17,12 +18,7 @@ public class playerEffector : MonoBehaviour {
         status = m_lastToken.GetTokenType() ;
         FindObjectOfType<RoundManager>().GrabToken(m_lastToken);
         attackPrefab = GameObject.FindGameObjectWithTag(status.ToString());
-        changeSprite();
-    }
-
-    void changeSprite()
-    {
-
+        SendMessage("setAnim", status);
     }
 
     TokenScript m_lastToken;
