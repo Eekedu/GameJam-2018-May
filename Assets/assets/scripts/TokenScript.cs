@@ -10,11 +10,7 @@ public class TokenScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-<<<<<<< HEAD
-        
-=======
         m_ttTokenType = MyType;
->>>>>>> dd32010c4b4d99481833bfb598498b817f3f7928
 	}
 	
 	// Update is called once per frame

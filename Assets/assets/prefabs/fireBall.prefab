@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212090015956286314}
   - component: {fileID: 61047842587815726}
   - component: {fileID: 50049050893243698}
+  - component: {fileID: 114129469736063384}
   m_Layer: 0
   m_Name: fireBall
   m_TagString: TokenFire
@@ -56,7 +57,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -87,6 +88,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.2}
   m_EdgeRadius: 0
+--- !u!114 &114129469736063384
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1729318556973882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e73f51a3958ba7848b950dcb1e53a72e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  body: {fileID: 0}
 --- !u!212 &212090015956286314
 SpriteRenderer:
   m_ObjectHideFlags: 1

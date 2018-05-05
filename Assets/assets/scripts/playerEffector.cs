@@ -48,7 +48,9 @@ public class playerEffector : MonoBehaviour {
     }
 
     void fireAttack(Vector2 dir) {
-        Instantiate(attackPrefab, this.transform);
+        Debug.Log(attackPrefab);
+        GameObject newObj = Instantiate(attackPrefab, new Vector3(this.transform.position.x, this.transform.position.y), Quaternion.identity);
+        newObj.SendMessage("setVel", Vector2.right * 10);
     }
     void waterAttack(Vector2 dir) { }
     void lightAttack(Vector2 dir) { }
