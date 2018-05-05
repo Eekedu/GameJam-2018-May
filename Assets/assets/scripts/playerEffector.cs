@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class playerEffector : MonoBehaviour {
     TokenScript.TokenType status = TokenScript.TokenType.TokenNone;
-    public GameObject attackPrefab;
+    public GameObject firePrefab, airPrefab, WaterPrefab, EarthPrefab, ElePrefab;
 
     private void Start()
     {
-        attackPrefab = GameObject.FindGameObjectWithTag("TokenFire");
         this.SendMessage("setAnim", status);
     }
 
@@ -17,7 +16,6 @@ public class playerEffector : MonoBehaviour {
         if (m_lastToken == null) return;
         status = m_lastToken.GetTokenType() ;
         FindObjectOfType<RoundManager>().GrabToken(m_lastToken);
-        attackPrefab = GameObject.FindGameObjectWithTag(status.ToString());
         this.SendMessage("setAnim", status);
     }
 
@@ -44,8 +42,7 @@ public class playerEffector : MonoBehaviour {
     }
 
     void fireAttack(Vector2 dir) {
-        Debug.Log(attackPrefab);
-        GameObject newObj = Instantiate(attackPrefab, new Vector3(this.transform.position.x, this.transform.position.y), Quaternion.identity);
+        GameObject newObj = Instantiate(firePrefab, new Vector3(this.transform.position.x, this.transform.position.y), Quaternion.identity);
         newObj.SendMessage("setVel", Vector2.right * 10);
     }
     void waterAttack(Vector2 dir) { }

@@ -40,7 +40,11 @@ public class movement : MonoBehaviour {
         {
             case TokenScript.TokenType.TokenFire: change = fireC; break;
             case TokenScript.TokenType.TokenWind: change = airC; break;
+            case TokenScript.TokenType.TokenElectric: change = elecC; break;
+            case TokenScript.TokenType.TokenEarth: change = earthC; break;
+            case TokenScript.TokenType.TokenWater: change = waterC; break;
         }
+        Debug.Log(change);
         //AnimatorOverrideController overide = new AnimatorOverrideController((RuntimeAnimatorController)Resources.Load("assets/anims/playerAir"));
         if (change != null)
         {
