@@ -121,6 +121,8 @@ public class RoundManager : MonoBehaviour {
             m_aoPlayerHUDs[i].transform.localPosition = new Vector3(fXPos, fYStart);
             //m_aoPlayerHUDs[i].SetStocks(2);
             m_oActivePlayers[i] = new ActivePlayer();
+            m_oActivePlayers[i].m_oHUD = m_aoPlayerHUDs[i];
+            m_oActivePlayers[i].AssignArrayNumber(i);
         }
         m_iPlayersRemaining = count;
     }
@@ -150,7 +152,7 @@ public class RoundManager : MonoBehaviour {
         m_pPhase = Phase.RP_Playing;
         m_tOverlayText.text = "Fight!";
         SpawnPlayer(1);
-        SpawnPlayer(2);
+        SpawnPlayer(0);
         m_fStartTime = Time.fixedTime +5.0f;
     }
     private void ProcPhasePlay()
@@ -232,12 +234,12 @@ public class RoundManager : MonoBehaviour {
 
     private void SpawnPlayer(int playerdex)
     {
-        m_oActivePlayers[playerdex-1].AssignPlayerObject(Instantiate(playerPrefab, new Vector3(m_v2PlayerSpawns[playerdex - 1].x, m_v2PlayerSpawns[playerdex - 1].y), Quaternion.identity));
-        m_oActivePlayers[playerdex -1].m_fHealth = 100;
-        m_aoPlayerHUDs[playerdex-1].SetHealth(100, false);
-        m_oActivePlayers[playerdex - 1].m_oHUD.SetStocks(m_oActivePlayers[playerdex - 1].m_iStocks);
-        m_oActivePlayers[playerdex - 1].m_bSpawning = false;
-        m_oActivePlayers[playerdex - 1].m_bAlive = true;
+        m_oActivePlayers[playerdex].AssignPlayerObject(Instantiate(playerPrefab, new Vector3(m_v2PlayerSpawns[playerdex].x, m_v2PlayerSpawns[playerdex].y), Quaternion.identity));
+        m_oActivePlayers[playerdex].m_fHealth = 100;
+        m_oActivePlayers[playerdex].m_oHUD.SetHealth(100, false);
+        m_oActivePlayers[playerdex].m_oHUD.SetStocks(m_oActivePlayers[playerdex].m_iStocks);
+        m_oActivePlayers[playerdex].m_bSpawning = false;
+        m_oActivePlayers[playerdex].m_bAlive = true;
     }
 
     private void KillPlayer(GameObject player)
