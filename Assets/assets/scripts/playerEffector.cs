@@ -6,7 +6,7 @@ public class playerEffector : MonoBehaviour {
     TokenScript.TokenType status = TokenScript.TokenType.TokenFire;
     public GameObject firePrefab, airPrefab, WaterPrefab, EarthPrefab, ElePrefab;
     movement mmove;
-    float nextGen;
+    float nextGen, genTime;
     private bool doGen = false;
     Vector2 pos, dirGen;
     private void Start()
@@ -67,7 +67,8 @@ public class playerEffector : MonoBehaviour {
         pos = this.transform.position;
         dirGen = dir;
         doGen = true;
-        nextGen = Time.fixedTime + 0.2f;
+        nextGen = Time.fixedTime + 0.12f;
+        genTime = Time.fixedTime + 1f;
     }
     void earthAttack(Vector2 dir) {
         dir.y += 10f;
@@ -98,10 +99,14 @@ public class playerEffector : MonoBehaviour {
         {
             if (Time.fixedTime >= nextGen)
             {
+                if (Time.fixedTime >= genTime)
+                {
+                    doGen = false;
+                }
                 GameObject newObj = Instantiate(ElePrefab, new Vector3(pos.x, pos.y), Quaternion.identity);
                 newObj.SendMessage("setOwner", this.gameObject);
-                newObj.SendMessage("setVel", dirGen);
-                nextGen = Time.fixedTime + 0.2f;
+                newObj.SendMessage("setVel", dirGen * 800);
+                nextGen = Time.fixedTime + 0.12f;
             }
         }
     }
