@@ -7,6 +7,14 @@ public class GameMaker : MonoBehaviour {
 
     public ControllerJoiner prefControllerJoiner;
 
+    enum Phase
+    {
+        PhaseWaiting,
+        PhaseCounting,
+        PhaseStarting
+    }
+    private Phase m_pPhase;
+
 	// Use this for initialization
 	void Start () {
         float fXStart = Screen.width * -0.75f;
@@ -28,6 +36,43 @@ public class GameMaker : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+		switch (m_pPhase)
+        {
+            case (Phase.PhaseWaiting):
+                ProcPhaseWaiting();
+                break;
+            case (Phase.PhaseCounting):
+                ProcPhaseCounting();
+                break;
+            case (Phase.PhaseStarting):
+                ProcPhaseStarting();
+                break;
+        }
+    }
+    void EnterPhaseWaiting()
+    {
+        m_pPhase = Phase.PhaseWaiting;
+    }
+    void ProcPhaseWaiting()
+    {
+
+    }
+    void EnterPhaseCounting()
+    {
+        m_pPhase = Phase.PhaseCounting;
+    }
+    void ProcPhaseCounting()
+    {
+
+    }
+    void EnterPhaseStarting()
+    {
+        m_pPhase = Phase.PhaseStarting;
+    }
+    void ProcPhaseStarting()
+    {
+
+    }
+
+
 }

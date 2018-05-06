@@ -21,7 +21,8 @@ public class ControllerJoiner : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         m_tTitle.text = "Controller: " + m_sControlPrefix;// m_iControllerIndex.toString();
-		if (Input.GetButtonDown(m_sControlStart))
+        Debug.Log(m_sControlJump);
+		if (Input.GetButtonDown(m_sControlJump))
         {
             ToggleReady();
         }
@@ -29,6 +30,8 @@ public class ControllerJoiner : MonoBehaviour {
         {
             ToggleJoined();
         }
+        m_tJoined.text = m_bJoined ? "Connected!" : "Not connected.";
+        m_tReady.text = m_bReady ? "Ready!" : "Not ready...";
 	}
     bool m_bReady;
     bool m_bJoined;
@@ -39,13 +42,14 @@ public class ControllerJoiner : MonoBehaviour {
     string m_sControlFire;
     string m_sControlJump;
 
-    const string c_sStartSuffix="Start";
+    const string c_sJumpSuffix="Jump";
     const string c_sFireSuffix="Fire";
     public void SetControllerNumber(int indexOne)
     {
         m_sControlPrefix = "P" + indexOne.ToString() + "_";
-        string m_sControlStart = m_sControlPrefix+c_sStartSuffix;
-        string m_sControlFire = m_sControlPrefix + c_sFireSuffix;
+        m_sControlJump = m_sControlPrefix+ c_sJumpSuffix;
+        m_sControlFire = m_sControlPrefix + c_sFireSuffix;
+       // Debug.Log(m_sControlJump);
     }
 
     private void ToggleReady()
