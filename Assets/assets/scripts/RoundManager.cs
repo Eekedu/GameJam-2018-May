@@ -175,7 +175,7 @@ public class RoundManager : MonoBehaviour {
         m_oActivePlayers[playerdex - 1].AssignPlayerNumber(playerdex, m_aoPlayerHUDs[playerdex-1]);
     }
 
-    private void DamagePlayer(GameObject player, float fDamage)
+    public void DamagePlayer(GameObject player, float fDamage)
 
     {
         foreach (ActivePlayer play in m_oActivePlayers) {
