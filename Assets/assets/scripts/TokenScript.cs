@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TokenScript : MonoBehaviour {
 
-    public enum TokenType { TokenEarth,TokenWind,TokenWater,TokenFire,TokenElectric,TokenNone}
+    public enum TokenType { TokenEarth,TokenWind,TokenWater,TokenFire,TokenElectric,TokenNone; }
     public TokenType MyType = TokenType.TokenEarth;
     private TokenType m_ttTokenType;
 
@@ -12,9 +12,22 @@ public class TokenScript : MonoBehaviour {
 	void Start () {
         m_ttTokenType = MyType;
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    public TokenType[] goodAgainst()
+    {
+        TokenType[] types;
+        switch (this.MyType)
+        {
+            case TokenType.TokenEarth:
+                {
+                    types.SetValue(Toe)
+                    break;
+                }
+            }
+    }
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 

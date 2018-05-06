@@ -26,7 +26,18 @@ public class projectile : MonoBehaviour {
         {
             selfAni.SetBool("collide", true);
             body.velocity = Vector2.zero;
-            FindObjectOfType<RoundManager>().DamagePlayer(other, damage);
+            RoundManager manager = FindObjectOfType<RoundManager>();
+            playerEffector player = owner.GetComponent<playerEffector>();
+            playerEffector playerMe = owner.GetComponent<playerEffector>();
+            TokenScript.TokenType playerType = player.getStatus();
+            TokenScript.TokenType ownerType = playerMe.getStatus();
+
+            if (playerType != ownerType)
+            {
+
+            }
+
+            manager.DamagePlayer(other, damage);
             destroyTime = Time.fixedTime + 0.25f;
             owner.SendMessage("stopGen", null);
         }
