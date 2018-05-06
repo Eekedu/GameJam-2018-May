@@ -271,6 +271,7 @@ MonoBehaviour:
   elecC: {fileID: 0}
   earthC: {fileID: 0}
   waterC: {fileID: 0}
+  selfSpri: {fileID: 0}
 --- !u!114 &84040290
 MonoBehaviour:
   m_ObjectHideFlags: 0

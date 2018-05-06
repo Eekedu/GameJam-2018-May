@@ -5,14 +5,16 @@ using UnityEngine;
 public class projectile : MonoBehaviour {
     private Rigidbody2D body;
     private Animator selfAni;
+    private SpriteRenderer selfSprite;
     private GameObject owner;
     public float damage;
     private Vector2 velocity;
     private float destroyTime;
 	// Use this for initialization
 	void Start () {
-        selfAni = GetComponent<Animator>();
-        body = GetComponent<Rigidbody2D>();
+        selfSprite = this.GetComponent<SpriteRenderer>();
+        selfAni = this.GetComponent<Animator>();
+        body = this.GetComponent<Rigidbody2D>();
         destroyTime = Time.fixedTime + 5f;
 
     }
@@ -40,6 +42,7 @@ public class projectile : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        selfSprite.flipX = (velocity.x < -.01);
         if (Time.fixedTime >= destroyTime)
         {
             Destroy(this.gameObject);
