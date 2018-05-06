@@ -11,7 +11,7 @@ public class movement : MonoBehaviour {
     private bool canJump = true;
     private bool isRunning = false;
     private Vector2 velocity;
-    private SpriteRenderer selfSpri;
+    public SpriteRenderer selfSpri;
     private Rigidbody2D body;
     private Animator selfAni;
 

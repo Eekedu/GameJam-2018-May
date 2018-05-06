@@ -22,6 +22,10 @@ public class RoundManager : MonoBehaviour {
     private ActivePlayer[] m_oActivePlayers;
     private int m_iPlayersRemaining;
 
+    public ActivePlayer[] GetPlayers()
+    {
+        return this.m_oActivePlayers;
+    }
 
 
     private class TokenSpawn
@@ -33,7 +37,7 @@ public class RoundManager : MonoBehaviour {
         public float m_fSpawnTime;
     }
 
-    private class ActivePlayer
+    public class ActivePlayer
     {
         public GameObject m_oObject;
         public playerEffector m_oEffector;
@@ -120,6 +124,7 @@ public class RoundManager : MonoBehaviour {
         }
         m_iPlayersRemaining = count;
     }
+
 
     private void EnterPhaseStart()
     {

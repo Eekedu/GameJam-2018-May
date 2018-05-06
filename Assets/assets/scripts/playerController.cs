@@ -54,10 +54,11 @@ public class playerController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            this.gameObject.SendMessage("attack", new Vector2(0,0));
+            Vector2 dir = (mmove.selfSpri.flipX)?Vector2.right:Vector2.left;
+            this.gameObject.SendMessage("attack", dir);
         }
 
-        if (Input.GetKey(KeyCode.Space) || Input.GetButton(playerPrefix + "Fire1"))
+        if (Input.GetKey(KeyCode.Space) || Input.GetButton(playerPrefix + "Fire"))
         {
             SendMessage("jump", null, SendMessageOptions.RequireReceiver);
         }
