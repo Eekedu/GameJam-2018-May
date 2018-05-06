@@ -44,7 +44,7 @@ Transform:
   m_GameObject: {fileID: 1173458687817896}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.2395307, y: 3.3726702, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -160,6 +160,11 @@ MonoBehaviour:
   EarthPrefab: {fileID: 1622072318453996, guid: dda48f1b0c0e0bd4fb6b6ccc5f9d7294,
     type: 2}
   ElePrefab: {fileID: 1271899795099700, guid: 78a2eb05b5474ed4182ed2ef23da979e, type: 2}
+  fireAttackS: {fileID: 8300000, guid: b9dc25554974bae438cd3be155883d8c, type: 3}
+  airAttackS: {fileID: 8300000, guid: b27278fc205d0dc45ac0674422e8a39c, type: 3}
+  waterAttackS: {fileID: 8300000, guid: 4dcf14659ee0e7d4d99f62a8ad21b694, type: 3}
+  EarthAttackS: {fileID: 8300000, guid: d4a7a5d33edf51744880f0755f06a4e8, type: 3}
+  EleAttackS: {fileID: 8300000, guid: 084db59032dcf3447b54f850e10e4273, type: 3}
 --- !u!114 &114489207184920984
 MonoBehaviour:
   m_ObjectHideFlags: 1
