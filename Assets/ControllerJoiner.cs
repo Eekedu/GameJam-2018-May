@@ -1,16 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ControllerJoiner : MonoBehaviour {
 
+
+    Text m_tTitle;
+    Text m_tJoined;
+    Text m_tReady;
+
 	// Use this for initialization
 	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        Text[] txts = GetComponentsInChildren<Text>();
+        m_tTitle = txts[0];
+        m_tJoined = txts[1];
+        m_tReady = txts[2];
+    }
+
+    // Update is called once per frame
+    void Update () {
 		if (Input.GetButtonDown(m_sControlStart))
         {
             ToggleReady();

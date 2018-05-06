@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 222882327775178066}
   - component: {fileID: 114612050410381476}
   m_Layer: 0
-  m_Name: Text (2)
+  m_Name: Ready
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 222375251689736692}
   - component: {fileID: 114338925738035182}
   m_Layer: 0
-  m_Name: Text
+  m_Name: Joined
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 222365981274759814}
   - component: {fileID: 114985211132334392}
   m_Layer: 0
-  m_Name: Text (1)
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,7 +85,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1253337782316944}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -276.6, y: 5.4, z: -2.2208056}
+  m_LocalPosition: {x: -276.31, y: -10.5, z: -2.2208056}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224401453315012622}
