@@ -51,13 +51,14 @@ public class GameManager : MonoBehaviour{
 
     }
 
+    int m_iWinner;
     public void SetWinner(int iControllerIndex)
     {
-
+        m_iWinner = iControllerIndex;
     }
 
     public int GetWinner()
     {
-        return -1;
+        return m_iWinner;
     }
 }

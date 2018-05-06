@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PlayerJoiner.unity
     guid: b85d27b0b417ca24f866aa479fca74d9
+  - enabled: 1
+    path: Assets/Scenes/GG.unity
+    guid: 58f4b51e01325c14ab3479aa517613be
   m_configObjects: {}
