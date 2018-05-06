@@ -50,7 +50,7 @@ public class RoundManager : MonoBehaviour {
         public float m_fSpawnTime;
         public int m_iStocks = 2;
         public int m_iArrayIndex;
-        public int m_iControllerIndex;
+        public int m_iControllerOrdinal;
         public ActivePlayer()
         {
             m_bAlive = false;
@@ -70,9 +70,9 @@ public class RoundManager : MonoBehaviour {
         {
             m_iArrayIndex = dex;
         }
-        public void AssignControllerNumber(int dex, PlayerHUDScript nuHUD)
+        public void AssignControllerOrdinal(int iOrd, PlayerHUDScript nuHUD)
         {
-            m_oController.AssignControllerNumber(dex);
+            m_iControllerOrdinal = iOrd;
             m_oHUD = nuHUD;
         }
     }
@@ -89,15 +89,17 @@ public class RoundManager : MonoBehaviour {
     private Phase m_pPhase = Phase.RP_Initial;
     private float m_fStartTime;
     private Text m_tOverlayText;
+    private GameManager m_oGameManager;
 
 	// Use this for initialization
 	void Start () {
+        m_oGameManager = FindObjectOfType<GameManager>();
         m_tOverlayText = GetComponentInChildren<Text>();
         if (SceneBoss.g_oSceneBoss!=null) SceneBoss.g_oSceneBoss.FadeIn();
         ConvertPlayerSpawns();
         ConvertTokenSpawns();
         EnterPhaseStart();
-        SetPlayerCount(2);
+        if (m_oGameManager!=null) SetPlayerCount(m_oGameManager.GetControllerCount());
         m_oGameCamera = GetComponentInChildren<CameraScript>();
         
 
@@ -123,6 +125,7 @@ public class RoundManager : MonoBehaviour {
             m_oActivePlayers[i] = new ActivePlayer();
             m_oActivePlayers[i].m_oHUD = m_aoPlayerHUDs[i];
             m_oActivePlayers[i].AssignArrayNumber(i);
+            m_oActivePlayers[i].AssignControllerOrdinal(m_oGameManager.GetControllerIndex(i),m_aoPlayerHUDs[i] );
         }
         m_iPlayersRemaining = count;
     }
@@ -151,8 +154,10 @@ public class RoundManager : MonoBehaviour {
     {
         m_pPhase = Phase.RP_Playing;
         m_tOverlayText.text = "Fight!";
-        SpawnPlayer(1);
-        SpawnPlayer(0);
+        foreach (ActivePlayer aplay in m_oActivePlayers)
+        {
+            SpawnPlayer(aplay.m_iArrayIndex);
+        }
         m_fStartTime = Time.fixedTime +5.0f;
     }
     private void ProcPhasePlay()
@@ -240,6 +245,7 @@ public class RoundManager : MonoBehaviour {
         m_oActivePlayers[playerdex].m_oHUD.SetStocks(m_oActivePlayers[playerdex].m_iStocks);
         m_oActivePlayers[playerdex].m_bSpawning = false;
         m_oActivePlayers[playerdex].m_bAlive = true;
+        m_oActivePlayers[playerdex].m_oObject.GetComponent<playerController>().AssignControllerNumber(m_oActivePlayers[playerdex].m_iControllerOrdinal);
     }
 
     private void KillPlayer(GameObject player)

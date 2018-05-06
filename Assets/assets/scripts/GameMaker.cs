@@ -21,10 +21,11 @@ public class GameMaker : MonoBehaviour {
     private float m_fLaunchTime;
 
     private Text m_tText;
-
+    private GameManager m_oManager;
 	// Use this for initialization
 	void Start () {
         if (SceneBoss.g_oSceneBoss!=null) SceneBoss.g_oSceneBoss.FadeIn();
+        m_oManager = FindObjectOfType<GameManager>();
 
         m_tText = GetComponentInChildren<Text>();
         float fXStart = Screen.width * -0.75f;
@@ -126,6 +127,11 @@ public class GameMaker : MonoBehaviour {
         {
             SceneBoss.g_oSceneBoss.FadeOut();
         }
+        for (int iterator = 0; iterator < 4; iterator++)
+        {
+            m_oManager.SetControllerActive(iterator,m_aControllerJoiners[iterator].IsJoined());
+        }
+        DontDestroyOnLoad(m_oManager.gameObject);
     }
     void ProcPhaseStarting()
     {
