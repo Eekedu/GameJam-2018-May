@@ -38,8 +38,11 @@ public class RoundManager : MonoBehaviour {
         public playerEffector m_oEffector;
         public playerController m_oController;
         public PlayerHUDScript m_oHUD;
+        public float m_fHealth;
+        public bool m_bAlive;
         public ActivePlayer(GameObject playob)
         {
+            m_bAlive = false;
             m_oObject = playob;
             m_oController = playob.GetComponent<playerController>();
             m_oEffector = playob.GetComponent<playerEffector>();
@@ -83,7 +86,7 @@ public class RoundManager : MonoBehaviour {
     public void SetPlayerCount(int count)
     {
         float fXStart = Screen.width * -0.5f;
-        float fYStart = (Screen.height * - 0.5f) + 75;
+        float fYStart = (GetComponent<Canvas>().pixelRect.height * -0.45f);// (Screen.height * - 0.25f) + 000;
         m_iPlayerCount = count;
         m_aoPlayerHUDs = new PlayerHUDScript[count];
         float fHUDStep = Screen.width / (count + 1);
@@ -172,11 +175,16 @@ public class RoundManager : MonoBehaviour {
         m_oActivePlayers[playerdex - 1].AssignPlayerNumber(playerdex, m_aoPlayerHUDs[playerdex-1]);
     }
 
-    private float fHealth = 100f;
-    private void DamagePlayer(int playerdex, float fDamage)
+    private void DamagePlayer(GameObject player, float fDamage)
+
     {
-        fHealth -= fDamage;
-        m_aoPlayerHUDs[playerdex - 1].SetHealth(fHealth, true);
+        foreach (ActivePlayer play in m_oActivePlayers) {
+            if (play.m_oObject == player)
+            {
+                play.m_fHealth -= fDamage;
+                play.m_oHUD.SetHealth(play.m_fHealth, true);
+            }
+        }
     }
 
     private void SpawnTokens()
@@ -242,7 +250,11 @@ public class RoundManager : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.H))
         {
-            DamagePlayer(1, 15);
+            DamagePlayer(m_oActivePlayers[0].m_oObject, 15);
+        }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            DamagePlayer(m_oActivePlayers[1].m_oObject, 15);
         }
         UpdatePlayerBounds();
         m_oGameCamera.SetBounds(m_vTopLeftBound, m_vBottomRightBound);

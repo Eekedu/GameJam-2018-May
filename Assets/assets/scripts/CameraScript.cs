@@ -7,7 +7,7 @@ public class CameraScript : MonoBehaviour {
     // Use this for initialization
     Camera m_oCamera;
 
-    private float fMinZoom = 5.0f;
+    private float fMinZoom = 15.0f;
 	void Start () {
         m_oCamera = GetComponentInChildren<Camera>();
 	}
