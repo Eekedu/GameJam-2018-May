@@ -70,7 +70,7 @@ public class playerEffector : MonoBehaviour {
         nextGen = Time.fixedTime + 0.2f;
     }
     void earthAttack(Vector2 dir) {
-        dir.y += 10;
+        dir.y += 10f;
         GameObject newObj = Instantiate(EarthPrefab, new Vector3(this.transform.position.x, this.transform.position.y), Quaternion.identity);
         newObj.SendMessage("setOwner", this.gameObject);
         newObj.SendMessage("setVel", dir * 50);
@@ -98,17 +98,9 @@ public class playerEffector : MonoBehaviour {
         {
             if (Time.fixedTime >= nextGen)
             {
-                for (int i = -1; i < 2; i++)
-                {
-                    Vector2 tempdir = dirGen;
-                    tempdir *= 80;
-                    tempdir.y = i * 15;
-                    float ang = Vector2.Angle(dirGen, tempdir);
-                    GameObject newObj = Instantiate(ElePrefab, new Vector3(pos.x, pos.y), Quaternion.identity);
-                    newObj.SendMessage("setOwner", this.gameObject);
-                    newObj.SendMessage("setVel", tempdir);
-                    newObj.SendMessage("setRotation", ang);
-                }
+                GameObject newObj = Instantiate(ElePrefab, new Vector3(pos.x, pos.y), Quaternion.identity);
+                newObj.SendMessage("setOwner", this.gameObject);
+                newObj.SendMessage("setVel", dirGen);
                 nextGen = Time.fixedTime + 0.2f;
             }
         }
