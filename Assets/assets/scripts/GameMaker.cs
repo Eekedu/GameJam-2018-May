@@ -141,7 +141,7 @@ public class GameMaker : MonoBehaviour {
         {
             if (SceneBoss.g_oSceneBoss.FadeComplete())
             {
-                UnityEngine.SceneManagement.SceneManager.LoadScene(SceneBoss.g_oSceneBoss.GetSceneIndex(SceneBoss.SceneSelect.SS_Test));
+                UnityEngine.SceneManagement.SceneManager.LoadScene(SceneBoss.g_oSceneBoss.GetSceneIndex(SceneBoss.SceneSelect.SS_Battle));
             }
         } else
         {

@@ -55,6 +55,7 @@ public class DJ : MonoBehaviour {
             {
                 m_asSource.clip = m_acCurrentSong;
                 m_asSource.Play();
+                m_asSource.volume = m_fMaxVolume;
                 m_pPhase = DJPhase.DJPlaying;
                 Debug.Log("wtf mate");
             }

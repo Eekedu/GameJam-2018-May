@@ -178,4 +178,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_acTitle: {fileID: 8300000, guid: ed3cbbd65bfe125478b20087f564f70b, type: 3}
   m_acLevel: {fileID: 8300000, guid: d04e807b44790c64ba1bf3768634c807, type: 3}
-  m_fMaxVolume: 1
+  m_fMaxVolume: 0.1
