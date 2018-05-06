@@ -49,7 +49,7 @@ public class SceneBoss : MonoBehaviour
             case SceneSelect.SS_Splash: return 0;
             case SceneSelect.SS_Title: return 1;
             case SceneSelect.SS_Test: return 3;
-            case SceneSelect.SS_GameOver: return 1;
+            case SceneSelect.SS_GameOver: return 5;
             case SceneSelect.SS_Joiner: return 4;
             case SceneSelect.SS_Battle: return 3;
         }
