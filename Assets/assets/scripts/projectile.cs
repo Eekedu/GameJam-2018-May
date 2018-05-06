@@ -42,6 +42,8 @@ public class projectile : MonoBehaviour {
             owner.SendMessage("stopGen", null);
         } else if (other.layer == 8)
         {
+            selfAni.SetBool("collide", true);
+            body.velocity = Vector2.zero;
             destroyTime = Time.fixedTime + 0.25f;
         }
     }
