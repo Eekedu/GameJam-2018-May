@@ -115,4 +115,75 @@ public class playerEffector : MonoBehaviour {
             }
         }
     }
+
+    public TokenScript.TokenType[] goodAgainst()
+    {
+        TokenScript.TokenType[] types = new TokenScript.TokenType[2];
+        switch (this.status)
+        {
+            case TokenScript.TokenType.TokenEarth:
+                {
+                    types[0] = TokenScript.TokenType.TokenFire;
+                    break;
+                }
+            case TokenScript.TokenType.TokenElectric:
+                {
+                    types[0] = TokenScript.TokenType.TokenWater;
+                    types[1] = TokenScript.TokenType.TokenWater;
+                    break;
+                }
+            case TokenScript.TokenType.TokenFire:
+                {
+                    types[0] = TokenScript.TokenType.TokenWind;
+                    types[1] = TokenScript.TokenType.TokenElectric;
+                    break;
+                }
+            case TokenScript.TokenType.TokenWater:
+                {
+                    types[0] = TokenScript.TokenType.TokenFire;
+                    types[1] = TokenScript.TokenType.TokenEarth;
+                    break;
+                }
+            case TokenScript.TokenType.TokenWind:
+                {
+                    types[0] = TokenScript.TokenType.TokenEarth;
+                    types[1] = TokenScript.TokenType.TokenElectric;
+                    break;
+                }
+        }
+        return types;
+    }
+
+    public TokenScript.TokenType badAgainst()
+    {
+        TokenScript.TokenType types = TokenScript.TokenType.TokenNone;
+        switch (this.status)
+        {
+            case TokenScript.TokenType.TokenEarth:
+                {
+                    break;
+                }
+            case TokenScript.TokenType.TokenElectric:
+                {
+                    types = TokenScript.TokenType.TokenEarth;
+                    break;
+                }
+            case TokenScript.TokenType.TokenFire:
+                {
+                    types = TokenScript.TokenType.TokenWater;
+                    break;
+                }
+            case TokenScript.TokenType.TokenWater:
+                {
+                    types = TokenScript.TokenType.TokenElectric;
+                    break;
+                }
+            case TokenScript.TokenType.TokenWind:
+                {
+                    types = TokenScript.TokenType.TokenFire;
+                    break;
+                }
+        }
+        return types;
+    }
 }

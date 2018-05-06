@@ -13,30 +13,6 @@ public class TokenScript : MonoBehaviour {
         m_ttTokenType = MyType;
 	}
 
-    public TokenType[] goodAgainst()
-    {
-        TokenType[] types = new TokenType[2];
-        switch (this.MyType)
-        {
-            case TokenType.TokenEarth:
-                {
-                    types[0] = TokenType.TokenFire;
-                    break;
-                }
-            case TokenType.TokenElectric:
-                {
-                    types[0] = TokenType.TokenWater;
-                    break;
-                }
-            case TokenType.TokenFire:
-                {
-                    
-                    break;
-                }
-        }
-        return types;
-    }
-
     // Update is called once per frame
     void Update () {
 		

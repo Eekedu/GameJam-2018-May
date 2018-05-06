@@ -11,18 +11,24 @@ public class projectile : MonoBehaviour {
     private Vector2 velocity;
     private float destroyTime = 0;
     public float genTime = 0f;
+    public bool canCollideDestroy = true;
+    public bool hasHit = false;
 	// Use this for initialization
 	void Start () {
         selfSprite = this.GetComponent<SpriteRenderer>();
         selfAni = this.GetComponent<Animator>();
         body = this.GetComponent<Rigidbody2D>();
         destroyTime = Time.fixedTime + 5f;
+        if (this.gameObject.ToString().IndexOf("rockBall") != -1 || this.gameObject.ToString().LastIndexOf("waveAttack") != -1)
+        {
+            canCollideDestroy = false;
+        }
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject other = collision.gameObject;
-        if (other.tag == "Player" && !other.Equals(owner))
+        if (other.tag == "Player" && !other.Equals(owner) && !hasHit)
         {
             selfAni.SetBool("collide", true);
             body.velocity = Vector2.zero;
@@ -32,15 +38,30 @@ public class projectile : MonoBehaviour {
             TokenScript.TokenType playerType = player.getStatus();
             TokenScript.TokenType ownerType = playerMe.getStatus();
 
-            if (playerType != ownerType)
+            TokenScript.TokenType[] goodCheck = playerMe.goodAgainst();
+            TokenScript.TokenType badCheck = playerMe.badAgainst();
+            Debug.Log(goodCheck);
+            Debug.Log(badCheck);
+            foreach (TokenScript.TokenType type in goodCheck)
             {
-
+                if (playerType == type)
+                {
+                    damage += 5f;
+                }
+            }
+            if (badCheck != TokenScript.TokenType.TokenNone)
+            {
+                if (badCheck == playerType)
+                {
+                    damage -= 5f;
+                }
             }
 
             manager.DamagePlayer(other, damage);
             destroyTime = Time.fixedTime + 0.25f;
             owner.SendMessage("stopGen", null);
-        } else if (other.layer == 8)
+            hasHit = true;
+        } else if (other.layer == 8 && canCollideDestroy)
         {
             selfAni.SetBool("collide", true);
             body.velocity = Vector2.zero;
