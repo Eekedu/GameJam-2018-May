@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class playerController : MonoBehaviour {
-    public string playerPrefix;
+    public string playerPrefix="P1_";
     GameObject pickup;
     movement mmove;
 	// Use this for initialization
 	void Start () {
         mmove = GetComponent<movement>();
+        //AssignControllerNumber(3);
 	}
 
     private void OnTriggerEnter2D(Collider2D collision)
