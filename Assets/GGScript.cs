@@ -36,6 +36,10 @@ public class GGScript : MonoBehaviour {
         {
             if (Input.GetButtonDown(m_sWinnerFire))
             {
+                DJ mDJ = FindObjectOfType<DJ>();
+                if (mDJ!=null) { mDJ.LoadSong("title");
+                    mDJ.PlayNextSong();
+                }
                 if (SceneBoss.g_oSceneBoss != null) SceneBoss.g_oSceneBoss.FadeOut();
                 m_bLeaving = true;
             }
