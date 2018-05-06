@@ -196,12 +196,12 @@ MonoBehaviour:
   speed: 0.1
   hMoveForce: 5
   jumpingForce: 10
-  norm: {fileID: 0}
+  norm: {fileID: 9100000, guid: 9642cd76496667442aec39fd8d603f82, type: 2}
   airC: {fileID: 9100000, guid: fde16c0896e4a4b4ab8c3f9e76827cbf, type: 2}
   fireC: {fileID: 9100000, guid: 8e0e5967435dd084dabcb3cf7c992ba9, type: 2}
   elecC: {fileID: 9100000, guid: 13729e6c9d93db44aa2ed5d5a8506329, type: 2}
-  earthC: {fileID: 0}
-  waterC: {fileID: 0}
+  earthC: {fileID: 9100000, guid: be41a42899bf2de42b082318c1bbb7bd, type: 2}
+  waterC: {fileID: 9100000, guid: f57e610f399554d49bb7eedc35932049, type: 2}
 --- !u!212 &212763135605940114
 SpriteRenderer:
   m_ObjectHideFlags: 1
