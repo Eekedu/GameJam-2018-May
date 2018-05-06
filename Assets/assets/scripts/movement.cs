@@ -22,6 +22,11 @@ public class movement : MonoBehaviour {
         selfSpri = this.GetComponent<SpriteRenderer>();
     }
 
+    public void addForce(Vector2 dir)
+    {
+        body.AddForce(dir);
+    }
+
     public void move(Vector2 dir)
     {
             float hComponent = dir.x;
