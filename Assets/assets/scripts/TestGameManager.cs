@@ -16,11 +16,12 @@ public class TestGameManager : GameManager {
 
     public override int GetControllerCount()
     {
-        return 2;
+        return 3;
     }
 
     public override int GetControllerIndex(int index)
     {
+        return index + 1;
         switch (index)
         {
             case 0: return 1;
