@@ -24,6 +24,8 @@ public class GameMaker : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        if (SceneBoss.g_oSceneBoss!=null) SceneBoss.g_oSceneBoss.FadeIn();
+
         m_tText = GetComponentInChildren<Text>();
         float fXStart = Screen.width * -0.75f;
         float fXStep = Screen.width * 0.5f;
