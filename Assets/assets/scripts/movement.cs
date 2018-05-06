@@ -14,6 +14,8 @@ public class movement : MonoBehaviour {
     public SpriteRenderer selfSpri;
     private Rigidbody2D body;
     private Animator selfAni;
+    private Vector2 windForce;
+    private float stopForce = 0f;
 
     private void Start()
     {
@@ -24,7 +26,8 @@ public class movement : MonoBehaviour {
 
     public void addForce(Vector2 dir)
     {
-        body.AddForce(dir);
+        windForce = dir;
+        stopForce = Time.fixedTime + 2f;
     }
 
     public void move(Vector2 dir)
@@ -107,6 +110,13 @@ public class movement : MonoBehaviour {
     }
     private void Update()   
     {
+        if (stopForce != 0 && Time.fixedTime < stopForce)
+        {
+            body.AddForce(windForce);
+        } else
+        {
+            stopForce = 0f;
+        }
         GroundCheck();
         if (body.velocity.y < 0) isJumping = false;
         selfAni.SetBool("isFalling", body.velocity.y < -0.0001f);

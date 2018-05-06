@@ -5,12 +5,15 @@ using UnityEngine;
 public class playerEffector : MonoBehaviour {
     TokenScript.TokenType status = TokenScript.TokenType.TokenNone;
     public GameObject firePrefab, airPrefab, WaterPrefab, EarthPrefab, ElePrefab;
+    private AudioSource AudSrc;
+    public AudioClip fireAttackS, airAttackS, waterAttackS, EarthAttackS, EleAttackS;
     movement mmove;
     float nextGen, genTime;
     private bool doGen = false;
     Vector2 pos, dirGen;
     private void Start()
     {
+        AudSrc = this.GetComponent<AudioSource>();
         mmove = this.GetComponent<movement>();
         mmove.setAnim(status);
     }
@@ -49,11 +52,16 @@ public class playerEffector : MonoBehaviour {
     {
         switch (status)
         {
-            case TokenScript.TokenType.TokenFire: { fireAttack(dir); } break;
-            case TokenScript.TokenType.TokenWater: { waterAttack(dir); } break;
-            case TokenScript.TokenType.TokenElectric: { lightAttack(dir); } break;
-            case TokenScript.TokenType.TokenEarth: { earthAttack(dir); } break;
-            case TokenScript.TokenType.TokenWind: { windAttack(dir); } break;
+            case TokenScript.TokenType.TokenFire: {AudSrc.clip = fireAttackS;fireAttack(dir);
+                } break;
+            case TokenScript.TokenType.TokenWater: { AudSrc.clip = waterAttackS; waterAttack(dir); } break;
+            case TokenScript.TokenType.TokenElectric: { AudSrc.clip = EleAttackS; lightAttack(dir); } break;
+            case TokenScript.TokenType.TokenEarth: { AudSrc.clip = EarthAttackS; earthAttack(dir); } break;
+            case TokenScript.TokenType.TokenWind: { AudSrc.clip = airAttackS; windAttack(dir); } break;
+        }
+        if (AudSrc.clip != null)
+        {
+            AudSrc.Play();
         }
     }
 
@@ -91,7 +99,8 @@ public class playerEffector : MonoBehaviour {
                 if (Vector2.Distance(player.GetPosition(), this.gameObject.transform.position) < 3f)
                 {
                     Vector2 pushBack = Vector2.left * 1/(this.transform.position.x - player.GetPosition().x);
-                    pushBack *= 50f;
+                    pushBack *= 10f;
+                    pushBack.y += 5f;
                     player.m_oObject.GetComponent<movement>().addForce(pushBack);
                 }
             }
