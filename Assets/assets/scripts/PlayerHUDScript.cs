@@ -8,6 +8,7 @@ public class PlayerHUDScript : MonoBehaviour {
 
     Text m_tTitle;
     Text m_tHealth;
+    Text m_tStocks;
     Image m_iToken;
 
     float m_fFlashScale=2.0f;
@@ -19,12 +20,13 @@ public class PlayerHUDScript : MonoBehaviour {
     public Sprite m_preFireToken;
     public Sprite m_preElectroToken;
 
-
+    private const string smiley = "☺";
     // Use this for initialization
     void Start () {
         Text[] textitems = GetComponentsInChildren<Text>();
         m_tTitle = textitems[0];
         m_tHealth = textitems[1];
+        m_tStocks = textitems[2];
         m_iToken = GetComponentInChildren<Image>();
 
         SetPlayerTitle("Player 1");
@@ -59,6 +61,14 @@ public class PlayerHUDScript : MonoBehaviour {
         if (flash)
         {
             m_fFlashTime = Time.fixedTime + 0.5f;
+        }
+    }
+    public void SetStocks(int iCount)
+    {
+        m_tStocks.text = "";
+        for (int i=0;i<iCount;i++)
+        {
+            m_tStocks.text = m_tStocks.text + smiley;
         }
     }
 

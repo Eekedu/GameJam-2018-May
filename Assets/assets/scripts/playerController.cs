@@ -23,6 +23,7 @@ public class playerController : MonoBehaviour {
 
     private void FixedUpdate()
     {
+        if (m_bFrozen) return;
         float moveX = (Input.GetAxis(playerPrefix + "Horizontal"));
         moveX = Mathf.Clamp(moveX, -1.0f, 1.0f);
         mmove.move(new Vector2(moveX, 0.0f));
@@ -30,11 +31,21 @@ public class playerController : MonoBehaviour {
             mmove.stop();
         }
     }
+
+    bool m_bFrozen;
+    public void Freeze()
+    {
+        m_bFrozen = true;
+    }
+    public void UnFreeze()
+    {
+        m_bFrozen = false;
+    }
      
     // Update is called once per frame
     void Update () {
 
-
+        if (m_bFrozen) return;
 
         if (Input.GetKeyDown(KeyCode.F))
         {

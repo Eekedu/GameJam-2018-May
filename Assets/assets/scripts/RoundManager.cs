@@ -20,6 +20,7 @@ public class RoundManager : MonoBehaviour {
     private PlayerHUDScript[] m_aoPlayerHUDs;
     private CameraScript m_oGameCamera;
     private ActivePlayer[] m_oActivePlayers;
+    private int m_iPlayersRemaining;
 
 
 
@@ -40,9 +41,15 @@ public class RoundManager : MonoBehaviour {
         public PlayerHUDScript m_oHUD;
         public float m_fHealth;
         public bool m_bAlive;
+        public bool m_bInGame;
+        public bool m_bSpawning;
+        public float m_fSpawnTime;
+        public int m_iStocks = 3;
+        public int m_iIndex;
         public ActivePlayer(GameObject playob)
         {
             m_bAlive = false;
+            m_bSpawning = false;
             m_oObject = playob;
             m_oController = playob.GetComponent<playerController>();
             m_oEffector = playob.GetComponent<playerEffector>();
@@ -53,6 +60,7 @@ public class RoundManager : MonoBehaviour {
         }
         public void AssignPlayerNumber(int dex, PlayerHUDScript nuHUD)
         {
+            m_iIndex = dex;
             m_oController.AssignPlayerNumber(dex);
             m_oHUD = nuHUD;
         }
@@ -62,7 +70,8 @@ public class RoundManager : MonoBehaviour {
     {
         RP_Initial,
         RP_Starting,
-        RP_Playing
+        RP_Playing,
+        RP_Ending
     }
 
     private Phase m_pPhase = Phase.RP_Initial;
@@ -97,8 +106,10 @@ public class RoundManager : MonoBehaviour {
             //m_aoPlayerHUDs[i] = Instantiate(m_preHUD, new Vector3(fPos, 55), Quaternion.identity,this.transform);
             m_aoPlayerHUDs[i] = Instantiate(m_preHUD, this.transform);
             m_aoPlayerHUDs[i].transform.localPosition = new Vector3(fXPos, fYStart);
+            //m_aoPlayerHUDs[i].SetStocks(2);
         }
         m_oActivePlayers = new ActivePlayer[count];
+        m_iPlayersRemaining = count;
     }
 
     private void EnterPhaseStart()
@@ -134,6 +145,16 @@ public class RoundManager : MonoBehaviour {
         if (m_fStartTime >= Time.fixedTime)
         {
             m_tOverlayText.enabled = false;
+        }
+        SpawnPlayers();
+    }
+
+    private void EnterPhaseEnd()
+    {
+        m_pPhase = Phase.RP_Ending;
+        foreach (ActivePlayer aplay in m_oActivePlayers)
+        {
+            aplay.m_oController.Freeze();
         }
     }
 
@@ -171,8 +192,39 @@ public class RoundManager : MonoBehaviour {
     private void SpawnPlayer(int playerdex)
     {
         m_oActivePlayers[playerdex-1] = new ActivePlayer(Instantiate(playerPrefab, new Vector3(m_v2PlayerSpawns[playerdex - 1].x, m_v2PlayerSpawns[playerdex - 1].y), Quaternion.identity));
+        m_oActivePlayers[playerdex -1].m_fHealth = 100;
         m_aoPlayerHUDs[playerdex-1].SetHealth(100, false);
         m_oActivePlayers[playerdex - 1].AssignPlayerNumber(playerdex, m_aoPlayerHUDs[playerdex-1]);
+        m_oActivePlayers[playerdex - 1].m_oHUD.SetStocks(m_oActivePlayers[playerdex - 1].m_iStocks);
+    }
+
+    private void KillPlayer(GameObject player)
+    {
+        foreach (ActivePlayer play in m_oActivePlayers)
+        {
+            if (play.m_oObject == player)
+            {
+                play.m_bAlive=false;
+                play.m_iStocks -= 1;
+                play.m_oHUD.SetStocks(play.m_iStocks);
+                play.m_bInGame = play.m_iStocks > 0;
+                play.m_oController.Freeze();
+                Destroy(play.m_oObject);
+                if (play.m_bInGame == false)
+                {
+                    play.m_oHUD.SetPlayerTitle("Fucking dead");
+                    m_iPlayersRemaining -= 1;
+                    if (m_iPlayersRemaining <= 1)
+                    {
+                        EnterPhaseEnd();
+                    }
+                }
+                else {
+                    play.m_bSpawning = true;
+                    play.m_fSpawnTime = Time.fixedTime + 3.0f;
+                }
+            }
+        }
     }
 
     public void DamagePlayer(GameObject player, float fDamage)
@@ -183,6 +235,10 @@ public class RoundManager : MonoBehaviour {
             {
                 play.m_fHealth -= fDamage;
                 play.m_oHUD.SetHealth(play.m_fHealth, true);
+                if (play.m_fHealth <= 0)
+                {
+                    KillPlayer(player);
+                }
             }
         }
     }
@@ -201,7 +257,20 @@ public class RoundManager : MonoBehaviour {
             }
         }
     }
+    private void SpawnPlayers()
+    {
 
+        foreach (ActivePlayer tplay in m_oActivePlayers)
+        {
+            if (tplay.m_bSpawning)
+            {
+                if (Time.fixedTime >= tplay.m_fSpawnTime)
+                {
+                    SpawnPlayer(tplay.m_iIndex);
+                }
+            }
+        }
+    }
     private void SpawnToken(TokenSpawn ttspawn)
     {
         TokenScript targetToken=null;
@@ -229,6 +298,8 @@ public class RoundManager : MonoBehaviour {
         m_vBottomRightBound = new Vector2();
         foreach (ActivePlayer player in m_oActivePlayers)
         {
+            if (player == null) continue;
+            if (!player.m_bAlive) continue;
             m_vTopLeftBound.x = Mathf.Min(player.GetPosition().x, m_vTopLeftBound.x);
             m_vTopLeftBound.y = Mathf.Max(player.GetPosition().y, m_vTopLeftBound.y);
             m_vBottomRightBound.x = Mathf.Max(player.GetPosition().x, m_vBottomRightBound.x);
