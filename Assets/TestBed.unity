@@ -441,29 +441,19 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 223086290543655186, guid: e80b8047adcf73747bb63b0e47e57f1b,
+    - target: {fileID: 20399523285891890, guid: e80b8047adcf73747bb63b0e47e57f1b,
         type: 2}
-      propertyPath: m_RenderMode
+      propertyPath: m_BackGroundColor.r
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224427914802923616, guid: e80b8047adcf73747bb63b0e47e57f1b,
+    - target: {fileID: 20399523285891890, guid: e80b8047adcf73747bb63b0e47e57f1b,
         type: 2}
-      propertyPath: m_LocalScale.x
+      propertyPath: m_BackGroundColor.g
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224427914802923616, guid: e80b8047adcf73747bb63b0e47e57f1b,
+    - target: {fileID: 20399523285891890, guid: e80b8047adcf73747bb63b0e47e57f1b,
         type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224427914802923616, guid: e80b8047adcf73747bb63b0e47e57f1b,
-        type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114429565399924900, guid: e80b8047adcf73747bb63b0e47e57f1b,
-        type: 2}
-      propertyPath: m_UiScaleMode
+      propertyPath: m_BackGroundColor.b
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
