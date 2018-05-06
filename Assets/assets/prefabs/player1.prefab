@@ -158,7 +158,7 @@ MonoBehaviour:
   WaterPrefab: {fileID: 0}
   EarthPrefab: {fileID: 1622072318453996, guid: dda48f1b0c0e0bd4fb6b6ccc5f9d7294,
     type: 2}
-  ElePrefab: {fileID: 0}
+  ElePrefab: {fileID: 1271899795099700, guid: 78a2eb05b5474ed4182ed2ef23da979e, type: 2}
 --- !u!114 &114489207184920984
 MonoBehaviour:
   m_ObjectHideFlags: 1
