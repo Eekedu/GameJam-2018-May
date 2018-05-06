@@ -196,6 +196,8 @@ MonoBehaviour:
   preElectroToken: {fileID: 114329622679607970, guid: 9c3a18c936a5f954683e5961a7e97695,
     type: 2}
   m_preHUD: {fileID: 114811040946519784, guid: 5e161a4edfa064b4a9a03cab2ee46273, type: 2}
+  prefTestManager: {fileID: 114670167544110748, guid: ff532a4f9ee228747acd06915a16f9e7,
+    type: 2}
 --- !u!114 &114855243550310784
 MonoBehaviour:
   m_ObjectHideFlags: 1

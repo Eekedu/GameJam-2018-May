@@ -599,6 +599,7 @@ MonoBehaviour:
   preWaterToken: {fileID: 0}
   preElectroToken: {fileID: 0}
   m_preHUD: {fileID: 0}
+  prefTestManager: {fileID: 0}
 --- !u!1001 &477206829
 Prefab:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ public class RoundManager : MonoBehaviour {
     public TokenScript preWaterToken;
     public TokenScript preElectroToken;
     public PlayerHUDScript m_preHUD;
+    public GameManager prefTestManager;
 
     private int m_iPlayerCount;
     private PlayerHUDScript[] m_aoPlayerHUDs;
@@ -74,6 +75,7 @@ public class RoundManager : MonoBehaviour {
         {
             m_iControllerOrdinal = iOrd;
             m_oHUD = nuHUD;
+            m_oHUD.SetPlayerTitle("Player " + iOrd.ToString());
         }
     }
 
@@ -94,12 +96,13 @@ public class RoundManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         m_oGameManager = FindObjectOfType<GameManager>();
+        if (m_oGameManager == null) m_oGameManager = Instantiate(prefTestManager);
+            SetPlayerCount(m_oGameManager.GetControllerCount());
         m_tOverlayText = GetComponentInChildren<Text>();
         if (SceneBoss.g_oSceneBoss!=null) SceneBoss.g_oSceneBoss.FadeIn();
         ConvertPlayerSpawns();
         ConvertTokenSpawns();
         EnterPhaseStart();
-        if (m_oGameManager!=null) SetPlayerCount(m_oGameManager.GetControllerCount());
         m_oGameCamera = GetComponentInChildren<CameraScript>();
         
 

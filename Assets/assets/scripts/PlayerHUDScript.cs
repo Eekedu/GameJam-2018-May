@@ -29,7 +29,7 @@ public class PlayerHUDScript : MonoBehaviour {
         m_tStocks = textitems[2];
         m_iToken = GetComponentInChildren<Image>();
 
-        SetPlayerTitle("Player 1");
+        //SetPlayerTitle("Player 1");
         //SetHealth(300,false);
 	}
 	
@@ -51,6 +51,7 @@ public class PlayerHUDScript : MonoBehaviour {
 
     public void SetPlayerTitle(string text)
     {
+        if (m_tTitle == null) m_tTitle = GetComponentsInChildren<Text>()[0];
         m_tTitle.text = text;
     }
 

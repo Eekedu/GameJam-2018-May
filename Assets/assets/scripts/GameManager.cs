@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour{
 
     bool[] m_bActiveController;
 
@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour {
         m_bActiveController[iIndex] = bState;
     }
 
-    public int GetControllerCount()
+    virtual public int GetControllerCount()
     {
         int iResult = 0;
         foreach (bool control in m_bActiveController)
@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour {
         return iResult;
     }
 
-    public int GetControllerIndex(int index)
+    virtual public int GetControllerIndex(int index)
     {
         int iResult = 0;
         int iIterator = 0;
