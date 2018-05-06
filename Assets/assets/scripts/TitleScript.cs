@@ -31,4 +31,9 @@ public class TitleScript : MonoBehaviour {
         SceneBoss.g_oSceneBoss.FadeOut();
         m_bLoadingScene = true;
     }
+
+    public void QuitButtonClick()
+    {
+        Application.Quit();
+    }
 }
