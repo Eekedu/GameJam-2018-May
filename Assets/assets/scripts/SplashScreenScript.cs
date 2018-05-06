@@ -13,6 +13,9 @@ public class SplashScreenScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(SceneBoss.g_oSceneBoss.GetSceneIndex(SceneBoss.SceneSelect.SS_Logo));
+
+        return;
 		if (!m_bExiting)
         {
             if (Time.fixedTime>=fSplashEnd || Input.anyKeyDown)

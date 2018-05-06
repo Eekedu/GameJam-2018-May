@@ -45,6 +45,7 @@ public class TokenScript : MonoBehaviour {
 
     public TokenType GetTokenType()
     {
+        if (MyType != TokenType.TokenEarth) return MyType;
         return m_ttTokenType;
     }
     public void SetTokenType(TokenType settype)

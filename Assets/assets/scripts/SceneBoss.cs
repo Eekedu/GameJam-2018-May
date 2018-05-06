@@ -16,6 +16,8 @@ public class SceneBoss : MonoBehaviour
     {
         SS_Null,
         SS_Splash,
+        SS_Logo,
+        SS_Jam,
         SS_Title,
         SS_Joiner,
         SS_Battle,
@@ -47,11 +49,20 @@ public class SceneBoss : MonoBehaviour
         {
             case SceneSelect.SS_Null: return -1;
             case SceneSelect.SS_Splash: return 0;
+            case SceneSelect.SS_Logo: return 6;
+            case SceneSelect.SS_Jam: return 7;
             case SceneSelect.SS_Title: return 1;
             case SceneSelect.SS_Test: return 3;
             case SceneSelect.SS_GameOver: return 5;
             case SceneSelect.SS_Joiner: return 4;
-            case SceneSelect.SS_Battle: return 3;
+            case SceneSelect.SS_Battle:
+                switch (Random.Range(0, 3))
+                {
+                    case 0: return 3;
+                    case 1: return 8;
+                    case 2: return 9;
+                }
+                break;
         }
 
         return -1;
