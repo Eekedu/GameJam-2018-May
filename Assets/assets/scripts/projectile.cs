@@ -39,11 +39,6 @@ public class projectile : MonoBehaviour {
         velocity = vel;
     }
 
-    void setRotation(float rot)
-    {
-        this.body.rotation = rot;
-    }
-
     void setOwner(GameObject own)
     {
         owner = own;
@@ -57,7 +52,9 @@ public class projectile : MonoBehaviour {
             Destroy(this.gameObject);
             owner.SendMessage("stopGen", null);
         }
-
+        if (velocity.y != 0) {
+            velocity.y = Mathf.Lerp(velocity.y, 0, 0.075f);
+        }
         this.body.AddForce(velocity);
 	}
 }
