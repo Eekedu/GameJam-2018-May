@@ -219,6 +219,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45deee629a25e98488c26810a9997408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &366531822
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 366531823}
+  - component: {fileID: 366531824}
+  m_Layer: 0
+  m_Name: DeeJay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &366531823
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 366531822}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 620.95605, y: 222.93686, z: -2.2208056}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &366531824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 366531822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5de83d6c63b921d4aa49d9e570f03fed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &409703547
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,6 +471,10 @@ Prefab:
         type: 2}
       propertyPath: m_SortingOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1357123246923076, guid: 0be536eaee23bfb4ebd684a205271b83, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0be536eaee23bfb4ebd684a205271b83, type: 2}
