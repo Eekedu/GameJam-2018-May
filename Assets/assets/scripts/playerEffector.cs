@@ -15,6 +15,11 @@ public class playerEffector : MonoBehaviour {
         mmove.setAnim(status);
     }
 
+    public TokenScript.TokenType getStatus()
+    {
+        return status;
+    }
+
 
     void pickup(int type)
     {

@@ -155,7 +155,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePrefab: {fileID: 1729318556973882, guid: 21f7b7a032ec1d845a423f896812f2f7, type: 2}
   airPrefab: {fileID: 0}
-  WaterPrefab: {fileID: 0}
+  WaterPrefab: {fileID: 1282796895836724, guid: 68a6d722e7b930945bf9f7dab92da087,
+    type: 2}
   EarthPrefab: {fileID: 1622072318453996, guid: dda48f1b0c0e0bd4fb6b6ccc5f9d7294,
     type: 2}
   ElePrefab: {fileID: 1271899795099700, guid: 78a2eb05b5474ed4182ed2ef23da979e, type: 2}
