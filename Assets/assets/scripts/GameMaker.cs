@@ -127,6 +127,8 @@ public class GameMaker : MonoBehaviour {
         {
             SceneBoss.g_oSceneBoss.FadeOut();
         }
+        FindObjectOfType<DJ>().LoadSong("battle");
+        FindObjectOfType<DJ>().PlayNextSong();
         for (int iterator = 0; iterator < 4; iterator++)
         {
             m_oManager.SetControllerActive(iterator,m_aControllerJoiners[iterator].IsJoined());
