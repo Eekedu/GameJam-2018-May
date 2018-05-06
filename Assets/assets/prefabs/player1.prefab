@@ -202,6 +202,7 @@ MonoBehaviour:
   elecC: {fileID: 9100000, guid: 13729e6c9d93db44aa2ed5d5a8506329, type: 2}
   earthC: {fileID: 9100000, guid: be41a42899bf2de42b082318c1bbb7bd, type: 2}
   waterC: {fileID: 9100000, guid: f57e610f399554d49bb7eedc35932049, type: 2}
+  selfSpri: {fileID: 0}
 --- !u!212 &212763135605940114
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class playerEffector : MonoBehaviour {
-    TokenScript.TokenType status = TokenScript.TokenType.TokenWind;
+    TokenScript.TokenType status = TokenScript.TokenType.TokenFire;
     public GameObject firePrefab, airPrefab, WaterPrefab, EarthPrefab, ElePrefab;
     movement mmove;
     private void Start()
@@ -74,9 +74,11 @@ public class playerEffector : MonoBehaviour {
         {
             if (player.m_oObject != this.gameObject)
             {
-                if (Vector2.Distance(player.GetPosition(), this.gameObject.transform.position) < 50)
+                if (Vector2.Distance(player.GetPosition(), this.gameObject.transform.position) < 3f)
                 {
-                    manager.DamagePlayer(player.m_oObject, 20f);
+                    Vector2 pushBack = Vector2.left * 1/(this.transform.position.x - player.GetPosition().x);
+                    pushBack *= 50f;
+                    player.m_oObject.GetComponent<movement>().addForce(pushBack);
                 }
             }
         }
