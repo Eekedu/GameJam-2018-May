@@ -180,10 +180,9 @@ public class RoundManager : MonoBehaviour {
         foreach (ActivePlayer aplay in m_oActivePlayers)
         {
             aplay.m_oController.Freeze();
-            Debug.Log("WinnerWinner");
+
             if (aplay.m_bInGame)
             {
-                Debug.Log("Chicken Dinner");
                 m_oGameManager.SetWinner(aplay.m_iControllerOrdinal);
             }
         }
@@ -272,7 +271,7 @@ public class RoundManager : MonoBehaviour {
                 Destroy(play.m_oObject);
                 if (play.m_bInGame == false)
                 {
-                    play.m_oHUD.SetPlayerTitle("Fucking dead");
+                    play.m_oHUD.SetPlayerTitle("Out");
                     m_iPlayersRemaining -= 1;
                     if (m_iPlayersRemaining <= 1)
                     {
