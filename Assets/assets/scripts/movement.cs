@@ -6,7 +6,7 @@ public class movement : MonoBehaviour {
     public float speed = 5f;
     public float hMoveForce = 500f;
     private float timeLast;
-    public float jumpingForce = 100f;
+    public float jumpingForce = 10f;
     public RuntimeAnimatorController norm, airC, fireC, elecC, earthC, waterC;
     private bool canJump = true;
     private bool isRunning = false;
@@ -64,7 +64,7 @@ public class movement : MonoBehaviour {
         Debug.Log(canJump.ToString());
         if (canJump)
         {
-            body.AddForce(Vector2.up * 20.0f);
+            body.AddForce(Vector2.up * jumpingForce);
             canJump = false;
             isJumping = true;
         } else

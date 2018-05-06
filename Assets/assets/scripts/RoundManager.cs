@@ -45,7 +45,8 @@ public class RoundManager : MonoBehaviour {
         public bool m_bSpawning;
         public float m_fSpawnTime;
         public int m_iStocks = 2;
-        public int m_iIndex;
+        public int m_iArrayIndex;
+        public int m_iControllerIndex;
         public ActivePlayer()
         {
             m_bAlive = false;
@@ -61,10 +62,13 @@ public class RoundManager : MonoBehaviour {
             m_oController = playob.GetComponent<playerController>();
             m_oEffector = playob.GetComponent<playerEffector>();
         }
-        public void AssignPlayerNumber(int dex, PlayerHUDScript nuHUD)
+        public void AssignArrayNumber(int dex)
         {
-            m_iIndex = dex;
-            m_oController.AssignPlayerNumber(dex);
+            m_iArrayIndex = dex;
+        }
+        public void AssignControllerNumber(int dex, PlayerHUDScript nuHUD)
+        {
+            m_oController.AssignControllerNumber(dex);
             m_oHUD = nuHUD;
         }
     }
@@ -142,7 +146,7 @@ public class RoundManager : MonoBehaviour {
         m_tOverlayText.text = "Fight!";
         SpawnPlayer(1);
         SpawnPlayer(2);
-        m_fStartTime = Time.fixedTime + 2.0f;
+        m_fStartTime = Time.fixedTime +5.0f;
     }
     private void ProcPhasePlay()
     {
@@ -226,9 +230,9 @@ public class RoundManager : MonoBehaviour {
         m_oActivePlayers[playerdex-1].AssignPlayerObject(Instantiate(playerPrefab, new Vector3(m_v2PlayerSpawns[playerdex - 1].x, m_v2PlayerSpawns[playerdex - 1].y), Quaternion.identity));
         m_oActivePlayers[playerdex -1].m_fHealth = 100;
         m_aoPlayerHUDs[playerdex-1].SetHealth(100, false);
-        m_oActivePlayers[playerdex - 1].AssignPlayerNumber(playerdex, m_aoPlayerHUDs[playerdex-1]);
         m_oActivePlayers[playerdex - 1].m_oHUD.SetStocks(m_oActivePlayers[playerdex - 1].m_iStocks);
         m_oActivePlayers[playerdex - 1].m_bSpawning = false;
+        m_oActivePlayers[playerdex - 1].m_bAlive = true;
     }
 
     private void KillPlayer(GameObject player)
@@ -268,7 +272,7 @@ public class RoundManager : MonoBehaviour {
             {
                 play.m_fHealth -= fDamage;
                 play.m_oHUD.SetHealth(play.m_fHealth, true);
-                if (play.m_fHealth <= 0)
+                if (play.m_fHealth <= 0 && play.m_bAlive)
                 {
                     KillPlayer(player);
                 }
@@ -299,7 +303,7 @@ public class RoundManager : MonoBehaviour {
             {
                 if (Time.fixedTime >= tplay.m_fSpawnTime)
                 {
-                    SpawnPlayer(tplay.m_iIndex);
+                    SpawnPlayer(tplay.m_iArrayIndex);
                 }
             }
         }

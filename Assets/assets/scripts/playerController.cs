@@ -16,7 +16,7 @@ public class playerController : MonoBehaviour {
         pickup = collision.gameObject;
     }
 
-    public void AssignPlayerNumber(int dex)
+    public void AssignControllerNumber(int dex)
     {
         playerPrefix = "P" + dex.ToString() + "_";
     }
