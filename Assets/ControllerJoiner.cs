@@ -20,6 +20,7 @@ public class ControllerJoiner : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        m_tTitle.text = "Controller: " + m_sControlPrefix;// m_iControllerIndex.toString();
 		if (Input.GetButtonDown(m_sControlStart))
         {
             ToggleReady();
