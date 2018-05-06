@@ -24,9 +24,11 @@ public class CameraScript : MonoBehaviour {
         float fMaxDiff = Mathf.Max(fXDiff, fYDiff);
         Vector2 vCenter = new Vector2((TL.x + BR.x) * 0.5f, (TL.y + BR.y) * 0.5f);
 
-        this.transform.position = new Vector3(vCenter.x, vCenter.y,-8);
-        float fDesiredZoom = fMaxDiff * 0.3f;
-        m_oCamera.orthographicSize = Mathf.Max(fMinZoom, fDesiredZoom);
+        Vector3 DesiredPosition = new Vector3(vCenter.x, vCenter.y, -8);
+        this.transform.position = Vector3.Lerp(this.transform.position, DesiredPosition, Time.deltaTime * 10.0f);
+
+        float fDesiredZoom = Mathf.Max(fMinZoom, fMaxDiff * 0.3f); ;
+        m_oCamera.orthographicSize = Mathf.Lerp(m_oCamera.orthographicSize,fDesiredZoom,Time.deltaTime *10.0f);
 
     }
 }

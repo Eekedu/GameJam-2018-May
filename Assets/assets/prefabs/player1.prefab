@@ -63,7 +63,7 @@ Rigidbody2D:
   m_Mass: 0.01
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 10
+  m_GravityScale: 3
   m_Material: {fileID: 6200000, guid: 5a921e18a4d4bcc46a39dd96f3b8ed52, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -194,9 +194,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58eb7f19eceb28643afb7d7a8869863b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.1
+  speed: 0.5
   hMoveForce: 5
-  jumpingForce: 10
+  jumpingForce: 5
   norm: {fileID: 9100000, guid: 9642cd76496667442aec39fd8d603f82, type: 2}
   airC: {fileID: 9100000, guid: fde16c0896e4a4b4ab8c3f9e76827cbf, type: 2}
   fireC: {fileID: 9100000, guid: 8e0e5967435dd084dabcb3cf7c992ba9, type: 2}

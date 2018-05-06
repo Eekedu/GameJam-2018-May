@@ -180,10 +180,9 @@ public class RoundManager : MonoBehaviour {
         foreach (ActivePlayer aplay in m_oActivePlayers)
         {
             aplay.m_oController.Freeze();
-            Debug.Log("WinnerWinner");
+
             if (aplay.m_bInGame)
             {
-                Debug.Log("Chicken Dinner");
                 m_oGameManager.SetWinner(aplay.m_iControllerOrdinal);
             }
         }

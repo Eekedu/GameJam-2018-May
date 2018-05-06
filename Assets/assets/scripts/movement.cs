@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class movement : MonoBehaviour {
-    public float speed = 3f;
+    public float speed = 10f;
     public float hMoveForce = 300f;
     private float timeLast;
-    public float jumpingForce = 12f;
+    public float jumpingForce = 10f;
     public RuntimeAnimatorController norm, airC, fireC, elecC, earthC, waterC;
     private bool canJump = true;
     private bool isRunning = false;
@@ -30,10 +30,14 @@ public class movement : MonoBehaviour {
     public void move(Vector2 dir)
     {
             float hComponent = dir.x;
-            body.AddForce(Vector2.right * hComponent * hMoveForce);
+        if (Mathf.Abs(body.velocity.x * hMoveForce * Time.fixedDeltaTime) < speed) body.AddForce(Vector2.right * hComponent * hMoveForce);
             body.velocity = new Vector2(Mathf.Clamp(body.velocity.x, -speed, speed), body.velocity.y);
-            selfSpri.flipX = (body.velocity.x > .1);
-            selfAni.SetBool("run", true);
+
+//        if ((body.velocity.x > 0.1f) && (!selfSpri.flipX)) selfSpri.flipX = true;
+//        if ((body.velocity.x < -0.1f) && (selfSpri.flipX)) selfSpri.flipX = false;
+        if ((body.velocity.x > 0.005f)) selfSpri.flipX = true;
+        if ((body.velocity.x < -0.005f)) selfSpri.flipX = false;
+        selfAni.SetBool("run", true);
             this.isRunning = true;
     }
 
@@ -69,6 +73,7 @@ public class movement : MonoBehaviour {
         Debug.Log(canJump.ToString());
         if (canJump)
         {
+            Debug.Log("Oigo" + jumpingForce.ToString());
             body.AddForce(Vector2.up * jumpingForce);
             canJump = false;
             isJumping = true;
@@ -76,7 +81,7 @@ public class movement : MonoBehaviour {
         {
             if (isJumping)
             {
-               body.AddForce(Vector2.up*0.5f);
+              body.AddForce(Vector2.up*0.2f);
             }
         }
     }
