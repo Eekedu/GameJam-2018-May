@@ -56,11 +56,10 @@ public class SceneBoss : MonoBehaviour
             case SceneSelect.SS_GameOver: return 5;
             case SceneSelect.SS_Joiner: return 4;
             case SceneSelect.SS_Battle:
-                switch (Random.Range(0, 3))
+                switch (Random.Range(0, 2))
                 {
                     case 0: return 3;
                     case 1: return 8;
-                    case 2: return 9;
                 }
                 break;
         }
