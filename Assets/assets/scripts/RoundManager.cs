@@ -44,19 +44,22 @@ public class RoundManager : MonoBehaviour {
         public bool m_bInGame;
         public bool m_bSpawning;
         public float m_fSpawnTime;
-        public int m_iStocks = 3;
+        public int m_iStocks = 2;
         public int m_iIndex;
-        public ActivePlayer(GameObject playob)
+        public ActivePlayer()
         {
             m_bAlive = false;
             m_bSpawning = false;
-            m_oObject = playob;
-            m_oController = playob.GetComponent<playerController>();
-            m_oEffector = playob.GetComponent<playerEffector>();
         }
         public Vector2 GetPosition()
         {
             return new Vector2(m_oObject.transform.position.x, m_oObject.transform.position.y);
+        }
+        public void AssignPlayerObject(GameObject playob)
+        {
+            m_oObject = playob;
+            m_oController = playob.GetComponent<playerController>();
+            m_oEffector = playob.GetComponent<playerEffector>();
         }
         public void AssignPlayerNumber(int dex, PlayerHUDScript nuHUD)
         {
@@ -71,7 +74,8 @@ public class RoundManager : MonoBehaviour {
         RP_Initial,
         RP_Starting,
         RP_Playing,
-        RP_Ending
+        RP_Ending,
+        RP_Leaving
     }
 
     private Phase m_pPhase = Phase.RP_Initial;
@@ -100,6 +104,7 @@ public class RoundManager : MonoBehaviour {
         m_aoPlayerHUDs = new PlayerHUDScript[count];
         float fHUDStep = Screen.width / (count + 1);
         Debug.Log("<" + fXStart.ToString() + "> <" + fYStart.ToString() + "> <" + fHUDStep.ToString() + ">");
+        m_oActivePlayers = new ActivePlayer[count];
         for (int i = 0; i < count; i++)
         {
             float fXPos = fXStart + ((i+1) * (fHUDStep));
@@ -107,8 +112,8 @@ public class RoundManager : MonoBehaviour {
             m_aoPlayerHUDs[i] = Instantiate(m_preHUD, this.transform);
             m_aoPlayerHUDs[i].transform.localPosition = new Vector3(fXPos, fYStart);
             //m_aoPlayerHUDs[i].SetStocks(2);
+            m_oActivePlayers[i] = new ActivePlayer();
         }
-        m_oActivePlayers = new ActivePlayer[count];
         m_iPlayersRemaining = count;
     }
 
@@ -137,7 +142,7 @@ public class RoundManager : MonoBehaviour {
         m_tOverlayText.text = "Fight!";
         SpawnPlayer(1);
         SpawnPlayer(2);
-        m_fStartTime = Time.fixedTime + 1.0f;
+        m_fStartTime = Time.fixedTime + 2.0f;
     }
     private void ProcPhasePlay()
     {
@@ -156,8 +161,35 @@ public class RoundManager : MonoBehaviour {
         {
             aplay.m_oController.Freeze();
         }
+        m_fStartTime = Time.fixedTime + 2.0f;
+    }
+    private void ProcPhaseEnd()
+    {
+        if (Time.fixedTime>=m_fStartTime)
+        {
+            if (SceneBoss.g_oSceneBoss!=null) SceneBoss.g_oSceneBoss.FadeOut();
+            EnterPhaseLeave();
+        }
+
     }
 
+    private void EnterPhaseLeave()
+    {
+        m_pPhase = Phase.RP_Leaving;
+    }
+
+    private void ProcPhaseLeave()
+    {
+        if (SceneBoss.g_oSceneBoss != null)
+        {
+            if (SceneBoss.g_oSceneBoss.FadeComplete()) {
+                UnityEngine.SceneManagement.SceneManager.LoadScene(SceneBoss.g_oSceneBoss.GetSceneIndex(SceneBoss.SceneSelect.SS_GameOver));
+            }
+        } else
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+        }
+    }
     private void ConvertPlayerSpawns()
     {
         playerController[] pcspots = FindObjectsOfType<playerController>();
@@ -191,11 +223,12 @@ public class RoundManager : MonoBehaviour {
 
     private void SpawnPlayer(int playerdex)
     {
-        m_oActivePlayers[playerdex-1] = new ActivePlayer(Instantiate(playerPrefab, new Vector3(m_v2PlayerSpawns[playerdex - 1].x, m_v2PlayerSpawns[playerdex - 1].y), Quaternion.identity));
+        m_oActivePlayers[playerdex-1].AssignPlayerObject(Instantiate(playerPrefab, new Vector3(m_v2PlayerSpawns[playerdex - 1].x, m_v2PlayerSpawns[playerdex - 1].y), Quaternion.identity));
         m_oActivePlayers[playerdex -1].m_fHealth = 100;
         m_aoPlayerHUDs[playerdex-1].SetHealth(100, false);
         m_oActivePlayers[playerdex - 1].AssignPlayerNumber(playerdex, m_aoPlayerHUDs[playerdex-1]);
         m_oActivePlayers[playerdex - 1].m_oHUD.SetStocks(m_oActivePlayers[playerdex - 1].m_iStocks);
+        m_oActivePlayers[playerdex - 1].m_bSpawning = false;
     }
 
     private void KillPlayer(GameObject player)
@@ -317,6 +350,12 @@ public class RoundManager : MonoBehaviour {
                 break;
             case Phase.RP_Playing:
                 ProcPhasePlay();
+                break;
+            case Phase.RP_Ending:
+                ProcPhaseEnd();
+                break;
+            case Phase.RP_Leaving:
+                ProcPhaseLeave();
                 break;
         }
         if (Input.GetKeyDown(KeyCode.H))
