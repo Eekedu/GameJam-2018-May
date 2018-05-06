@@ -58,7 +58,7 @@ public class playerEffector : MonoBehaviour {
         newObj.SendMessage("setVel", dir * 50);
     }
     void waterAttack(Vector2 dir) {
-
+        dir.x *= 5f;
         GameObject newObj = Instantiate(WaterPrefab, new Vector3(this.transform.position.x, this.transform.position.y), Quaternion.identity);
         newObj.SendMessage("setOwner", this.gameObject);
         newObj.SendMessage("setVel", dir * 25);
@@ -105,8 +105,8 @@ public class playerEffector : MonoBehaviour {
                 }
                 GameObject newObj = Instantiate(ElePrefab, new Vector3(pos.x, pos.y), Quaternion.identity);
                 newObj.SendMessage("setOwner", this.gameObject);
-                newObj.SendMessage("setVel", dirGen * 800);
-                nextGen = Time.fixedTime + 0.12f;
+                newObj.SendMessage("setVel", dirGen * 1200);
+                nextGen = Time.fixedTime + 0.14f;
             }
         }
     }
