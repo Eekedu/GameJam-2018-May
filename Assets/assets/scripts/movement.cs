@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class movement : MonoBehaviour {
-    public float speed = 5f;
-    public float hMoveForce = 500f;
+    public float speed = 3f;
+    public float hMoveForce = 300f;
     private float timeLast;
-    public float jumpingForce = 10f;
+    public float jumpingForce = 12f;
     public RuntimeAnimatorController norm, airC, fireC, elecC, earthC, waterC;
     private bool canJump = true;
     private bool isRunning = false;
