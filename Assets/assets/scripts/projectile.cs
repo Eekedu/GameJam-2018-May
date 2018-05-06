@@ -47,7 +47,6 @@ public class projectile : MonoBehaviour {
                 if (playerType == type)
                 {
                     damage += 5f;
-                    Debug.Log("Added Damage");
                 }
             }
             if (badCheck != TokenScript.TokenType.TokenNone)
@@ -55,6 +54,10 @@ public class projectile : MonoBehaviour {
                 if (badCheck == playerType)
                 {
                     damage -= 5f;
+                    if (damage < 0f)
+                    {
+                        damage = 0f;
+                    }
                 }
             }
 
