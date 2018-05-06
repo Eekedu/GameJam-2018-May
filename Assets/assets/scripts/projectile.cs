@@ -33,20 +33,21 @@ public class projectile : MonoBehaviour {
             selfAni.SetBool("collide", true);
             body.velocity = Vector2.zero;
             RoundManager manager = FindObjectOfType<RoundManager>();
-            playerEffector player = owner.GetComponent<playerEffector>();
+            playerEffector player = other.GetComponent<playerEffector>();
             playerEffector playerMe = owner.GetComponent<playerEffector>();
             TokenScript.TokenType playerType = player.getStatus();
             TokenScript.TokenType ownerType = playerMe.getStatus();
 
             TokenScript.TokenType[] goodCheck = playerMe.goodAgainst();
             TokenScript.TokenType badCheck = playerMe.badAgainst();
-            Debug.Log(goodCheck);
-            Debug.Log(badCheck);
             foreach (TokenScript.TokenType type in goodCheck)
             {
+                Debug.Log(type);
+                Debug.Log(playerType);
                 if (playerType == type)
                 {
                     damage += 5f;
+                    Debug.Log("Added Damage");
                 }
             }
             if (badCheck != TokenScript.TokenType.TokenNone)
