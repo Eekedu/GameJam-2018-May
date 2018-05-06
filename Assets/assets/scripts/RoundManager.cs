@@ -375,14 +375,7 @@ public class RoundManager : MonoBehaviour {
                 ProcPhaseLeave();
                 break;
         }
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            DamagePlayer(m_oActivePlayers[0].m_oObject, 15);
-        }
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            DamagePlayer(m_oActivePlayers[1].m_oObject, 15);
-        }
+
         UpdatePlayerBounds();
         m_oGameCamera.SetBounds(m_vTopLeftBound, m_vBottomRightBound);
         //SpawnTokens();
