@@ -271,7 +271,7 @@ public class RoundManager : MonoBehaviour {
                 Destroy(play.m_oObject);
                 if (play.m_bInGame == false)
                 {
-                    play.m_oHUD.SetPlayerTitle("Fucking dead");
+                    play.m_oHUD.SetPlayerTitle("Out");
                     m_iPlayersRemaining -= 1;
                     if (m_iPlayersRemaining <= 1)
                     {
