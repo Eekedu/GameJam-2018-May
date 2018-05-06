@@ -6,6 +6,7 @@ public class projectile : MonoBehaviour {
     private Rigidbody2D body;
     private Animator selfAni;
     private GameObject owner;
+    public float damage;
     private Vector2 velocity;
     private float destroyTime;
 	// Use this for initialization
@@ -22,6 +23,7 @@ public class projectile : MonoBehaviour {
         {
             selfAni.SetBool("collide", true);
             body.velocity = Vector2.zero;
+            FindObjectOfType<RoundManager>().DamagePlayer(other, damage);
             destroyTime = Time.fixedTime + 0.25f;
         }
     }
