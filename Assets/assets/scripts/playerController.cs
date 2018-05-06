@@ -50,7 +50,7 @@ public class playerController : MonoBehaviour {
         {
             SendMessage("jump", null, SendMessageOptions.RequireReceiver);
         }
-        if (Input.GetKey(KeyCode.Q) || Input.GetButtonDown(playerPrefix + "Fire2"))
+        if (Input.GetButtonDown(playerPrefix + "Fire2"))
         {
             SendMessage("pickup", 1, SendMessageOptions.RequireReceiver);
         }
