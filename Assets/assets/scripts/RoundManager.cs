@@ -224,7 +224,9 @@ public class RoundManager : MonoBehaviour {
         {
             m_v2PlayerSpawns[ddex] = new Vector2(pcon.transform.position.x, pcon.transform.position.y);
             Destroy(pcon.gameObject);
+            ddex++;
         }
+        Debug.Log("Consumed " + pcspots.Length.ToString() + " players");
     }
 
     private void ConvertTokenSpawns()
