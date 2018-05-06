@@ -6,6 +6,9 @@ public class playerEffector : MonoBehaviour {
     TokenScript.TokenType status = TokenScript.TokenType.TokenFire;
     public GameObject firePrefab, airPrefab, WaterPrefab, EarthPrefab, ElePrefab;
     movement mmove;
+    float nextGen;
+    private bool doGen = false;
+    Vector2 pos, dirGen;
     private void Start()
     {
         mmove = this.GetComponent<movement>();
@@ -20,6 +23,11 @@ public class playerEffector : MonoBehaviour {
         FindObjectOfType<RoundManager>().GrabToken(m_lastToken, this.gameObject);
         mmove.setAnim(status);
 
+    }
+
+    void stopGen()
+    {
+        doGen = false;
     }
 
     TokenScript m_lastToken;
@@ -56,17 +64,17 @@ public class playerEffector : MonoBehaviour {
         newObj.SendMessage("setVel", dir * 25);
     }
     void lightAttack(Vector2 dir) {
-        for (int i = -1; i < 2; i++)
-        {
-            Vector2 tempdir = dir;
-            tempdir *= 80;
-            tempdir.y = i * 15;
-            GameObject newObj = Instantiate(ElePrefab, new Vector3(this.transform.position.x, this.transform.position.y), Quaternion.identity);
-            newObj.SendMessage("setOwner", this.gameObject);
-            newObj.SendMessage("setVel", tempdir);
-        }
+        pos = this.transform.position;
+        dirGen = dir;
+        doGen = true;
+        nextGen = Time.fixedTime + 0.2f;
     }
-    void earthAttack(Vector2 dir) { }
+    void earthAttack(Vector2 dir) {
+        dir.y += 10;
+        GameObject newObj = Instantiate(EarthPrefab, new Vector3(this.transform.position.x, this.transform.position.y), Quaternion.identity);
+        newObj.SendMessage("setOwner", this.gameObject);
+        newObj.SendMessage("setVel", dir * 50);
+    }
     void windAttack(Vector2 dir) {
         RoundManager manager = FindObjectOfType<RoundManager>();
         RoundManager.ActivePlayer[] players = manager.GetPlayers();
@@ -86,6 +94,23 @@ public class playerEffector : MonoBehaviour {
 
     private void Update()
     {
-        
+        if (doGen)
+        {
+            if (Time.fixedTime >= nextGen)
+            {
+                for (int i = -1; i < 2; i++)
+                {
+                    Vector2 tempdir = dirGen;
+                    tempdir *= 80;
+                    tempdir.y = i * 15;
+                    float ang = Vector2.Angle(dirGen, tempdir);
+                    GameObject newObj = Instantiate(ElePrefab, new Vector3(pos.x, pos.y), Quaternion.identity);
+                    newObj.SendMessage("setOwner", this.gameObject);
+                    newObj.SendMessage("setVel", tempdir);
+                    newObj.SendMessage("setRotation", ang);
+                }
+                nextGen = Time.fixedTime + 0.2f;
+            }
+        }
     }
 }

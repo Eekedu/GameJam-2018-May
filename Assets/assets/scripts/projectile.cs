@@ -9,13 +9,16 @@ public class projectile : MonoBehaviour {
     private GameObject owner;
     public float damage;
     private Vector2 velocity;
-    private float destroyTime;
+    public float destroyTime = 0;
 	// Use this for initialization
 	void Start () {
         selfSprite = this.GetComponent<SpriteRenderer>();
         selfAni = this.GetComponent<Animator>();
         body = this.GetComponent<Rigidbody2D>();
-        destroyTime = Time.fixedTime + 5f;
+        if (destroyTime == 0)
+        {
+            destroyTime = Time.fixedTime + 5f;
+        }
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -28,11 +31,17 @@ public class projectile : MonoBehaviour {
             FindObjectOfType<RoundManager>().DamagePlayer(other, damage);
             destroyTime = Time.fixedTime + 0.25f;
         }
+        owner.SendMessage("stopGen", null);
     }
 
     void setVel(Vector2 vel)
     {
         velocity = vel;
+    }
+
+    void setRotation(float rot)
+    {
+        this.body.rotation = rot;
     }
 
     void setOwner(GameObject own)
@@ -46,7 +55,9 @@ public class projectile : MonoBehaviour {
         if (Time.fixedTime >= destroyTime)
         {
             Destroy(this.gameObject);
+            owner.SendMessage("stopGen", null);
         }
+
         this.body.AddForce(velocity);
 	}
 }
