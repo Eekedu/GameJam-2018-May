@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class playerEffector : MonoBehaviour {
-    TokenScript.TokenType status = TokenScript.TokenType.TokenFire;
+    TokenScript.TokenType status = TokenScript.TokenType.TokenWind;
     public GameObject firePrefab, airPrefab, WaterPrefab, EarthPrefab, ElePrefab;
     movement mmove;
     private void Start()
@@ -59,22 +59,24 @@ public class playerEffector : MonoBehaviour {
         for (int i = -1; i < 2; i++)
         {
             Vector2 tempdir = dir;
+            tempdir *= 80;
             tempdir.y = i * 15;
             GameObject newObj = Instantiate(ElePrefab, new Vector3(this.transform.position.x, this.transform.position.y), Quaternion.identity);
             newObj.SendMessage("setOwner", this.gameObject);
-            newObj.SendMessage("setVel", dir * 80);
+            newObj.SendMessage("setVel", tempdir);
         }
     }
     void earthAttack(Vector2 dir) { }
     void windAttack(Vector2 dir) {
-        RoundManager.ActivePlayer[] players = FindObjectOfType<RoundManager>().GetPlayers();
+        RoundManager manager = FindObjectOfType<RoundManager>();
+        RoundManager.ActivePlayer[] players = manager.GetPlayers();
         foreach (RoundManager.ActivePlayer player in players)
         {
             if (player.m_oObject != this.gameObject)
             {
                 if (Vector2.Distance(player.GetPosition(), this.gameObject.transform.position) < 50)
                 {
-                    Debug.Log("WAT");
+                    manager.DamagePlayer(player.m_oObject, 20f);
                 }
             }
         }
