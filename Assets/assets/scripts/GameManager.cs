@@ -33,17 +33,19 @@ public class GameManager : MonoBehaviour {
 
     public int GetControllerIndex(int index)
     {
-        int iResult = -1;
+        int iResult = 0;
         int iIterator = 0;
         foreach (bool control in m_bActiveController)
         {
             if (control) {
                 if (iIterator == index)
                 {
-                    return iIterator+1;
+                    Debug.Log("Player " + index.ToString() + " of " + GetControllerCount().ToString()+ " is Control Ordinal " + (iIterator + 1).ToString());
+                    return iResult+1;
                 }
                 iIterator++;
             }
+            iResult++;
         }
         return -1;
 
