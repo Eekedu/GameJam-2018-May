@@ -242,7 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e73f51a3958ba7848b950dcb1e53a72e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitAudio: {fileID: 0}
+  hitAudio: {fileID: 8300000, guid: 683940f3b0f126243b6f0374017ca9ae, type: 3}
   damage: 10
   genTime: 0
   canCollideDestroy: 1
