@@ -40,6 +40,9 @@ public class projectile : MonoBehaviour {
             manager.DamagePlayer(other, damage);
             destroyTime = Time.fixedTime + 0.25f;
             owner.SendMessage("stopGen", null);
+        } else if (other.layer == 8)
+        {
+            destroyTime = Time.fixedTime + 0.25f;
         }
     }
 
