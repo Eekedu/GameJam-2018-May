@@ -7,6 +7,8 @@ public class projectile : MonoBehaviour {
     private Animator selfAni;
     private SpriteRenderer selfSprite;
     private GameObject owner;
+    private AudioSource AudSrc;
+    public AudioClip hitAudio;
     public float damage;
     private Vector2 velocity;
     private float destroyTime = 0;
@@ -15,6 +17,11 @@ public class projectile : MonoBehaviour {
     public bool hasHit = false;
 	// Use this for initialization
 	void Start () {
+        AudSrc = this.GetComponent<AudioSource>();
+        if (hitAudio != null)
+        {
+            AudSrc.clip = hitAudio;
+        }
         selfSprite = this.GetComponent<SpriteRenderer>();
         selfAni = this.GetComponent<Animator>();
         body = this.GetComponent<Rigidbody2D>();

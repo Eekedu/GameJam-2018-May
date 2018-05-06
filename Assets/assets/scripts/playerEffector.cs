@@ -91,7 +91,8 @@ public class playerEffector : MonoBehaviour {
                 if (Vector2.Distance(player.GetPosition(), this.gameObject.transform.position) < 3f)
                 {
                     Vector2 pushBack = Vector2.left * 1/(this.transform.position.x - player.GetPosition().x);
-                    pushBack *= 50f;
+                    pushBack *= 10f;
+                    pushBack.y += 5f;
                     player.m_oObject.GetComponent<movement>().addForce(pushBack);
                 }
             }

@@ -224,7 +224,9 @@ public class RoundManager : MonoBehaviour {
         {
             m_v2PlayerSpawns[ddex] = new Vector2(pcon.transform.position.x, pcon.transform.position.y);
             Destroy(pcon.gameObject);
+            ddex++;
         }
+        Debug.Log("Consumed " + pcspots.Length.ToString() + " players");
     }
 
     private void ConvertTokenSpawns()
@@ -363,6 +365,10 @@ public class RoundManager : MonoBehaviour {
             m_vTopLeftBound.y = Mathf.Max(player.GetPosition().y, m_vTopLeftBound.y);
             m_vBottomRightBound.x = Mathf.Max(player.GetPosition().x, m_vBottomRightBound.x);
             m_vBottomRightBound.y = Mathf.Min(player.GetPosition().y, m_vBottomRightBound.y);
+            if (player.GetPosition().y < -50)
+            {
+                KillPlayer(player.m_oObject);
+            }
         }
     }
 
