@@ -71,6 +71,7 @@ public class projectile : MonoBehaviour {
             manager.DamagePlayer(other, damage);
             destroyTime = Time.fixedTime + 0.25f;
             owner.SendMessage("stopGen", null);
+            AudSrc.Play();
             hasHit = true;
         } else if (other.layer == 8 && canCollideDestroy)
         {
