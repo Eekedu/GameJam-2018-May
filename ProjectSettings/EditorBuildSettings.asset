@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/TestBed.unity
     guid: b0887ffe2c5e0414b90cb44c8dce37a7
+  - enabled: 1
+    path: Assets/Scenes/PlayerJoiner.unity
+    guid: b85d27b0b417ca24f866aa479fca74d9
   m_configObjects: {}

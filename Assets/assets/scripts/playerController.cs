@@ -47,22 +47,19 @@ public class playerController : MonoBehaviour {
 
         if (m_bFrozen) return;
 
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            this.gameObject.SendMessage("pickup",1);
-        }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+
+        if (Input.GetButtonDown(playerPrefix + "Fire"))
         {
             Vector2 dir = (mmove.selfSpri.flipX)?Vector2.right:Vector2.left;
             this.gameObject.SendMessage("attack", dir);
         }
 
-        if (Input.GetKey(KeyCode.Space) || Input.GetButton(playerPrefix + "Fire"))
+        if (Input.GetButton(playerPrefix + "Jump"))
         {
             SendMessage("jump", null, SendMessageOptions.RequireReceiver);
         }
-        if (Input.GetButtonDown(playerPrefix + "Fire2"))
+        if (Input.GetButtonDown(playerPrefix + "Grab"))
         {
             SendMessage("pickup", 1, SendMessageOptions.RequireReceiver);
         }
