@@ -18,6 +18,10 @@ public class TitleScript : MonoBehaviour {
                 UnityEngine.SceneManagement.SceneManager.LoadScene(SceneBoss.g_oSceneBoss.GetSceneIndex(SceneBoss.SceneSelect.SS_Joiner));
             }
         }
+        if (Input.GetButtonDown("Submit"))
+        {
+            PlayButtonClick();
+        }
 	}
 
     private bool m_bLoadingScene = false;
