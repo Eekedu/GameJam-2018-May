@@ -52,6 +52,10 @@ public class projectile : MonoBehaviour {
         if (velocity.y != 0) {
             velocity.y = Mathf.Lerp(velocity.y, 0, 0.075f);
         }
+        if (Mathf.Abs(velocity.x) > 30f)
+        {
+            velocity.x *= 0.9f;
+        }
         this.body.AddForce(velocity);
 	}
 }
