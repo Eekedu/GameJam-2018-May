@@ -72,4 +72,15 @@ public class ControllerJoiner : MonoBehaviour {
             m_bReady = false;
         }
     }
+
+    public bool IsReady()
+    {
+        if (!m_bJoined) return true;
+        return m_bReady;
+    }
+
+    public bool IsJoined()
+    {
+        return m_bJoined;
+    }
 }
